@@ -1,42 +1,64 @@
-import React from "react";
-// import { Link } from "react-router-dom";
-import "./style.css";
+import * as React from "react";
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  ListItemText,
+  ListItem,
+  List,
+  Container,
+} from "@material-ui/core";
+import { Home } from "@material-ui/icons";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+  navbarDisplayFlex: {
+    display: `flex`,
+    justifyContent: `space-between`,
+  },
+  navDisplayFlex: {
+    display: `flex`,
+    justifyContent: `space-between`,
+  },
+  linkText: {
+    textDecoration: `none`,
+    textTransform: `uppercase`,
+    color: `white`,
+  },
+});
+
+const navLinks = [
+  { title: `about us`, path: `/about-us` },
+  { title: `product`, path: `/product` },
+  { title: `blog`, path: `/blog` },
+  { title: `contact`, path: `/contact` },
+  { title: `faq`, path: `/faq` },
+];
 
 export default function NavBar() {
+  const classes = useStyles();
   return (
-    <div>Hello</div>
-    // <div className="NavBar">
-    //   <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-    //     <Link to="/" className="navbar-brand mx-5" id="Patrick">
-    //       <h3>Patrick Ceriale</h3>{" "}
-    //     </Link>
-    //     <button
-    //       className="navbar-toggler"
-    //       type="button"
-    //       data-toggle="collapse"
-    //       data-target="#navbarNav"
-    //       aria-controls="navbarNav"
-    //       aria-expanded="false"
-    //       aria-label="Toggle navigation"
-    //     >
-    //       <span className="navbar-toggler-icon"></span>
-    //     </button>
-    //     <div className="collapse navbar-collapse" id="navbarNav">
-    //       <ul className="navbar-nav ml-auto">
-    //         <li className="nav-item active">
-    //           <Link to="/">About </Link>
-    //         </li>
-    //         <li className="nav-item">
-    //           {" "}
-    //           <Link to="/portfolio"> Portfolio</Link>{" "}
-    //         </li>
-    //         <li className="nav-item">
-    //           {" "}
-    //           <Link to="/contact">Contact</Link>
-    //         </li>
-    //       </ul>
-    //     </div>
-    //   </nav>
-    // </div>
+    <AppBar position="static">
+      <Toolbar>
+        <Container maxWidth="xl" className={classes.navbarDisplayFlex}>
+          <IconButton edge="start" color="inherit" aria-label="home">
+            <Home fontSize="large" />
+          </IconButton>
+          <List
+            component="nav"
+            aria-labelledby="main navigation"
+            className={classes.navDisplayFlex}
+          >
+            {navLinks.map(({ title, path }) => (
+              <a href={path} key={title} className={classes.linkText}>
+                <ListItem button>
+                  <ListItemText primary={title} />
+                </ListItem>
+              </a>
+            ))}
+          </List>
+        </Container>
+      </Toolbar>
+    </AppBar>
   );
 }
