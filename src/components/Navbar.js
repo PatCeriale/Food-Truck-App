@@ -2,14 +2,16 @@ import * as React from "react";
 import {
   AppBar,
   Toolbar,
-  IconButton,
-  ListItemText,
-  ListItem,
-  List,
   Container,
+  IconButton,
+  List,
+  ListItem,
+  ListItemText,
+  Hidden,
 } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 import { Home } from "@material-ui/icons";
-import { makeStyles } from "@material-ui/core/styles";
+import SideDrawer from "./SideDrawer";
 
 const useStyles = makeStyles({
   navbarDisplayFlex: {
@@ -35,8 +37,9 @@ const navLinks = [
   { title: `faq`, path: `/faq` },
 ];
 
-export default function NavBar() {
+const Header = () => {
   const classes = useStyles();
+
   return (
     <AppBar position="static">
       <Toolbar>
@@ -44,21 +47,28 @@ export default function NavBar() {
           <IconButton edge="start" color="inherit" aria-label="home">
             <Home fontSize="large" />
           </IconButton>
-          <List
-            component="nav"
-            aria-labelledby="main navigation"
-            className={classes.navDisplayFlex}
-          >
-            {navLinks.map(({ title, path }) => (
-              <a href={path} key={title} className={classes.linkText}>
-                <ListItem button>
-                  <ListItemText primary={title} />
-                </ListItem>
-              </a>
-            ))}
-          </List>
+          <Hidden smDown>
+            <List
+              component="nav"
+              aria-labelledby="main navigation"
+              className={classes.navDisplayFlex}
+            >
+              {navLinks.map(({ title, path }) => (
+                <a href={path} key={title} className={classes.linkText}>
+                  <ListItem button>
+                    <ListItemText primary={title} />
+                  </ListItem>
+                </a>
+              ))}
+            </List>
+          </Hidden>
+          <Hidden mdUp>
+            <SideDrawer navLinks={navLinks} />
+          </Hidden>
         </Container>
       </Toolbar>
     </AppBar>
   );
-}
+};
+
+export default Header;
