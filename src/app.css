@@ -1,4 +1,23 @@
 * > body {
   margin: 0;
   box-sizing: border-box;
+  height: 100%;
+}
+.page-container {
+  display: block;
+  position: relative;
+  /* padding-bottom: 10%; */
+  min-height: 100%;
+}
+
+.content-wrap {
+  padding-bottom: 2.5rem; /* Footer height */
+}
+.footer-container {
+  position: static;
+  bottom: 0;
+  width: 100%;
+  margin-top: 20px;
+  min-height: 10;
+  display: block;
 }
