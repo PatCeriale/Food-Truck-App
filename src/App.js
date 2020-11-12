@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import React from "react";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer/Footer";
 import SignIn from "./pages/signIn/signIn";
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
             <SignIn />
           </Route>
         </Switch>
+        <Footer />
       </Router>
     </>
   );
