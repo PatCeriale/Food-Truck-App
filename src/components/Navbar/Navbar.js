@@ -30,11 +30,12 @@ const useStyles = makeStyles({
 });
 
 const navLinks = [
-  { title: `about us`, path: `/about-us` },
-  { title: `product`, path: `/product` },
-  { title: `blog`, path: `/blog` },
-  { title: `contact`, path: `/contact` },
-  { title: `faq`, path: `/faq` },
+  { title: `Home`, path: `/` },
+  { title: `User Account`, path: `/user` },
+  { title: `Change Location`, path: `/location` },
+  { title: `Search for Food Trucks`, path: `/search` },
+  { title: `Sign In`, path: `/signin` },
+  { title: `Sign Up`, path: `/signup` },
 ];
 
 const Header = () => {
@@ -44,7 +45,7 @@ const Header = () => {
     <AppBar position="static">
       <Toolbar>
         <Container maxWidth="xl" className={classes.navbarDisplayFlex}>
-          <IconButton edge="start" color="inherit" aria-label="home">
+          <IconButton edge="start" color="inherit" aria-label="home" path="/">
             <Home fontSize="large" />
           </IconButton>
           <Hidden smDown>
