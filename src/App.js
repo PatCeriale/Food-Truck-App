@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
 import SignIn from "./pages/SignIn/SignIn";
-import SignUp from "./pages/signup/SignUp";
+import SignUp from "./pages/SignUp/SignUp";
 import User from "./pages/User/User";
 import Location from "./pages/Location/Location";
 import Search from "./pages/Search/Search";
