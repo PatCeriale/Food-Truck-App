@@ -3,6 +3,7 @@ import React from "react";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import SignIn from "./pages/signIn/signIn";
+import Home from "./pages/Home/Home";
 import "./app.css";
 
 function App() {
@@ -11,6 +12,9 @@ function App() {
       <div className="content-wrap">
         <Navbar />
         <Switch>
+          <Route exact path={["/Home"]}>
+            <Home />
+          </Route>
           <Route exact path={["/signin"]}>
             <SignIn />
           </Route>
