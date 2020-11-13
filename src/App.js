@@ -3,22 +3,21 @@ import React from "react";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import SignIn from "./pages/signIn/signIn";
+import "./app.css";
 
 function App() {
   return (
-    <div className="page-container">
-      <Router>
-        <div className="content-wrap">
-          <Navbar />
-          <Switch>
-            <Route exact path={["/signin"]}>
-              <SignIn />
-            </Route>
-          </Switch>
-          <Footer class="footer-container" />
-        </div>
-      </Router>
-    </div>
+    <Router>
+      <div className="content-wrap">
+        <Navbar />
+        <Switch>
+          <Route exact path={["/signin"]}>
+            <SignIn />
+          </Route>
+        </Switch>
+      </div>
+      <Footer class="footer-container" />
+    </Router>
   );
 }
 
