@@ -1,12 +1,15 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import React from "react";
 import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 import SignIn from "./pages/signIn/signIn";
 import Home from "./pages/Home/Home";
+import "./app.css";
+
 function App() {
   return (
-    <>
-      <Router>
+    <Router>
+      <div className="content-wrap">
         <Navbar />
         <Switch>
           <Route exact path={["/Home"]}>
@@ -16,8 +19,9 @@ function App() {
             <SignIn />
           </Route>
         </Switch>
-      </Router>
-    </>
+      </div>
+      <Footer class="footer-container" />
+    </Router>
   );
 }
 
