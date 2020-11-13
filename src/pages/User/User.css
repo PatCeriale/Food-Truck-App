@@ -1,0 +1,13 @@
+body {
+  background-color: oldlace;
+}
+
+Card {
+  justify-content: center;
+  color: springgreen;
+}
+paper {
+  color: rgba(0, 0, 0, 0.54);
+  padding: 120px;
+  text-align: center;
+}
