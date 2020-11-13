@@ -2,14 +2,16 @@ import * as React from "react";
 import {
   AppBar,
   Toolbar,
-  IconButton,
-  ListItemText,
-  ListItem,
-  List,
   Container,
+  IconButton,
+  List,
+  ListItem,
+  ListItemText,
+  Hidden,
 } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 import { Home } from "@material-ui/icons";
-import { makeStyles } from "@material-ui/core/styles";
+import SideDrawer from "./SideDrawer";
 
 const useStyles = makeStyles({
   navbarDisplayFlex: {
@@ -28,37 +30,46 @@ const useStyles = makeStyles({
 });
 
 const navLinks = [
-  { title: `about us`, path: `/about-us` },
-  { title: `product`, path: `/product` },
-  { title: `blog`, path: `/blog` },
-  { title: `contact`, path: `/contact` },
-  { title: `faq`, path: `/faq` },
+  { title: `Home`, path: `/` },
+  { title: `User Account`, path: `/user` },
+  { title: `Change Location`, path: `/location` },
+  { title: `Search for Food Trucks`, path: `/search` },
+  { title: `Sign In`, path: `/signin` },
+  { title: `Sign Up`, path: `/signup` },
 ];
 
-export default function NavBar() {
+const Header = () => {
   const classes = useStyles();
+
   return (
     <AppBar position="static">
       <Toolbar>
         <Container maxWidth="xl" className={classes.navbarDisplayFlex}>
-          <IconButton edge="start" color="inherit" aria-label="home">
+          <IconButton edge="start" color="inherit" aria-label="home" path="/">
             <Home fontSize="large" />
           </IconButton>
-          <List
-            component="nav"
-            aria-labelledby="main navigation"
-            className={classes.navDisplayFlex}
-          >
-            {navLinks.map(({ title, path }) => (
-              <a href={path} key={title} className={classes.linkText}>
-                <ListItem button>
-                  <ListItemText primary={title} />
-                </ListItem>
-              </a>
-            ))}
-          </List>
+          <Hidden smDown>
+            <List
+              component="nav"
+              aria-labelledby="main navigation"
+              className={classes.navDisplayFlex}
+            >
+              {navLinks.map(({ title, path }) => (
+                <a href={path} key={title} className={classes.linkText}>
+                  <ListItem button>
+                    <ListItemText primary={title} />
+                  </ListItem>
+                </a>
+              ))}
+            </List>
+          </Hidden>
+          <Hidden mdUp>
+            <SideDrawer navLinks={navLinks} />
+          </Hidden>
         </Container>
       </Toolbar>
     </AppBar>
   );
-}
+};
+
+export default Header;

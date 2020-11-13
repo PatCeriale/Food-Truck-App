@@ -2,8 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import Gmap from "../../components/GMap/GMap";
-import "./Home.css";
+import "./User.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,13 +22,11 @@ export default function Home() {
   return (
     <div className={classes.root}>
       <div>
-        <h1>Home Page</h1>
+        <h1>User Account</h1>
       </div>
       <Grid container spacing={6}>
         <Grid item xs={12}>
-          <Paper className={classes.paper}>
-            <Gmap />
-          </Paper>
+          <Paper className={classes.paper}>xs=12</Paper>
         </Grid>
         <Grid item xs={6}>
           <Paper className={classes.paper}>xs=6</Paper>
