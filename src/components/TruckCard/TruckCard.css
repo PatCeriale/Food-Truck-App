@@ -14,3 +14,6 @@
   border-color: black;
   border-width: 1px;
 }
+.textArea {
+  width: 100%;
+}

@@ -64,7 +64,11 @@ export default function TruckCard() {
                 <i class="far fa-star"></i>
               </Button>
             </ButtonGroup>
-            <textarea placeholder="What did you think?"></textarea>
+            <TextareaAutosize
+              rowsMin={1}
+              className="textArea"
+              placeholder="What did you think?"
+            ></TextareaAutosize>
           </Grid>
           <Grid item xs={12} spacing={1}>
             <Button variant="contained" color="primary">
