@@ -1,5 +1,11 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { Container, ButtonGroup, Button, Grid, Paper } from "@material-ui/core";
+import {
+  Container,
+  ButtonGroup,
+  Button,
+  Grid,
+  TextareaAutosize,
+} from "@material-ui/core";
 import "./TruckCard.css";
 
 export default function TruckCard() {
@@ -14,9 +20,14 @@ export default function TruckCard() {
               className="foodTruckImage"
             ></img>
           </Grid>
-          <Grid item xs={12} spacing={3}>
+          <Grid item xs={9} spacing={3}>
             <h2>Truck Name</h2>
             <hr />
+          </Grid>
+          <Grid item xs={3} spacing={3}>
+            <Button variant="contained" color="primary">
+              Favorite
+            </Button>
           </Grid>
           <Grid item xs={12} spacing={3}>
             Location: <br />
@@ -29,8 +40,8 @@ export default function TruckCard() {
           <Grid item xs={6} spacing={3}>
             <span className="right">Global Rating: rating/5</span>
           </Grid>
-          <Grid item xs={8} s={6} spacing={3}>
-            Rate this food truck!
+          <Grid item xs={8} s={6} spacing={1}>
+            Write a review for this food truck!
             <br />
             <ButtonGroup
               color="primary"
@@ -53,10 +64,11 @@ export default function TruckCard() {
                 <i class="far fa-star"></i>
               </Button>
             </ButtonGroup>
-          </Grid>{" "}
-          <Grid item xs={4} s={6} spacing={3}>
+            <textarea placeholder="What did you think?"></textarea>
+          </Grid>
+          <Grid item xs={12} spacing={1}>
             <Button variant="contained" color="primary">
-              Favorite
+              Submit Review
             </Button>
           </Grid>
         </Grid>
