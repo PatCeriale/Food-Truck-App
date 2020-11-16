@@ -1,12 +1,11 @@
-import TruckCard from "../../components/TruckCard/TruckCard";
-// import Truck from "../../components/TruckCard/TruckCard";
-import "./Truck.css";
+import { makeStyles } from "@material-ui/core/styles";
+import { Container, ButtonGroup, Button, Grid, Paper } from "@material-ui/core";
+import "./TruckCard.css";
 
-export default function Truck() {
+export default function TruckCard() {
   return (
-    <div className="Trucks">
-      <TruckCard />
-      {/* <Container className="Container" maxWidth="sm">
+    <div className="TruckCard">
+      <Container className="Container" maxWidth="sm">
         <Grid container spacing={4}>
           <Grid item xs={12} spacing={12}>
             <img
@@ -61,7 +60,7 @@ export default function Truck() {
             </Button>
           </Grid>
         </Grid>
-      </Container> */}
+      </Container>
     </div>
   );
 }
