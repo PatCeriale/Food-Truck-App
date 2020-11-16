@@ -1,0 +1,10 @@
+.Footer {
+  background-image: url(opacityfoodtruckbackground.jpg);
+  background-size: cover;
+  text-align: center;
+  color: black;
+  margin-top: -2.5rem;
+}
+.nothing {
+  background-color: salmon;
+}

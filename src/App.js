@@ -1,24 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React from "react";
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
+// import Home from "./pages/Home/Home";
+import Home from "./pages/Home/Home";
+import SignIn from "./pages/SignIn/SignIn";
+import SignUp from "./pages/SignUp/SignUp";
+import User from "./pages/User/User";
+import Location from "./pages/Location/Location";
+import Search from "./pages/Search/Search";
+import Truck from "./pages/Truck/Truck";
+import "./app.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="content-wrap">
+        <Navbar />
+        <Switch>
+          <Route exact path={["/Home", "/"]}>
+            <Home />
+          </Route>
+          <Route exact path={["/signin"]}>
+            <SignIn />
+          </Route>
+          <Route exact path={["/signup"]}>
+            <SignUp />
+          </Route>
+          <Route exact path={["/user"]}>
+            <User />
+          </Route>
+          <Route exact path={["/location"]}>
+            <Location />
+          </Route>
+          <Route exact path={["/search"]}>
+            <Search />
+          </Route>
+          <Route exact path={["/truck"]}>
+            <Truck />
+          </Route>
+        </Switch>
+      </div>
+      <Footer className="footer-container" />
+    </Router>
   );
 }
 
