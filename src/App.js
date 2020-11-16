@@ -40,7 +40,7 @@ function App() {
           </Route>
         </Switch>
       </div>
-      <Footer class="footer-container" />
+      <Footer className="footer-container" />
     </Router>
   );
 }
