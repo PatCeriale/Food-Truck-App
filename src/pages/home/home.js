@@ -1,7 +1,6 @@
-import React from "./node_modules/react";
-import { makeStyles } from "./node_modules/@material-ui/core/styles";
-import Paper from "./node_modules/@material-ui/core/Paper";
-import Grid from "./node_modules/@material-ui/core/Grid";
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import {Container, ButtonGroup, Button, Grid, TextareaAutosize, Paper} from "@material-ui/core"; 
 import Gmap from "../../components/GMap/GMap";
 import "./Home.css";
 
