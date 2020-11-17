@@ -21,10 +21,10 @@ function App() {
           <Route exact path={["/Home", "/"]}>
             <Home />
           </Route>
-          <Route exact path={["/signin"]}>
+          <Route exact path={["/SignIn"]}>
             <SignIn />
           </Route>
-          <Route exact path={["/signup"]}>
+          <Route exact path={["/SignUp"]}>
             <SignUp />
           </Route>
           <Route exact path={["/user"]}>
