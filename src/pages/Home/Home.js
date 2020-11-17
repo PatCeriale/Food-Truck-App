@@ -1,8 +1,22 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+<<<<<<< HEAD
 import { Grid, Paper } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
+=======
+import {
+  Container,
+  ButtonGroup,
+  Button,
+  Grid,
+  TextareaAutosize,
+  Paper,
+} from "@material-ui/core";
+// import Gmap from "../../components/GMap/GMap";
+// import Paper from "@material-ui/core/Paper";
+// import Grid from "@material-ui/core/Grid";
+>>>>>>> ccbb84eb0e7c7fb48d3149b6a13b806016bcbda1
 
 import "./Home.css";
 import GoogleMap from "../../components/GoogleMap/GoogleMap";
@@ -23,28 +37,18 @@ export default function Home() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div>
+      <GoogleMap />
       <div>
-        <h1>Home Page</h1>
+        <Grid container spacing={6} className="grid">
+          <Grid item xs={6}>
+            <Paper className={classes.paper}>xs=6</Paper>{" "}
+          </Grid>
+          <Grid item xs={6}>
+            <Paper className={classes.paper}>xs=6</Paper>{" "}
+          </Grid>
+        </Grid>
       </div>
-      <Grid container spacing={6}>
-        <Grid item xs={12}>
-          <Paper className={classes.paper}></Paper>
-          <GoogleMap />
-        </Grid>
-        <Grid item xs={6}>
-          <Paper className={classes.paper}>xs=6</Paper>
-        </Grid>
-        <Grid item xs={6}>
-          <Paper className={classes.paper}>xs=6</Paper>
-        </Grid>
-        <Grid item xs={6}>
-          <Paper className={classes.paper}>xs=6</Paper>
-        </Grid>
-        <Grid item xs={6}>
-          <Paper className={classes.paper}>xs=6</Paper>
-        </Grid>
-      </Grid>
     </div>
   );
 }
