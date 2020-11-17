@@ -24,28 +24,18 @@ export default function Home() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div>
+      <GoogleMap />
       <div>
-        <h1>Home Page</h1>
+        <Grid container spacing={6} className="grid">
+          <Grid item xs={6}>
+            <Paper className={classes.paper}>xs=6</Paper>{" "}
+          </Grid>
+          <Grid item xs={6}>
+            <Paper className={classes.paper}>xs=6</Paper>{" "}
+          </Grid>
+        </Grid>
       </div>
-      <Grid container spacing={6}>
-        <Grid item xs={12}>
-          <Paper className={classes.paper}></Paper>
-          <GoogleMap />
-        </Grid>
-        <Grid item xs={6}>
-          <Paper className={classes.paper}>xs=6</Paper>
-        </Grid>
-        <Grid item xs={6}>
-          <Paper className={classes.paper}>xs=6</Paper>
-        </Grid>
-        <Grid item xs={6}>
-          <Paper className={classes.paper}>xs=6</Paper>
-        </Grid>
-        <Grid item xs={6}>
-          <Paper className={classes.paper}>xs=6</Paper>
-        </Grid>
-      </Grid>
     </div>
   );
 }
