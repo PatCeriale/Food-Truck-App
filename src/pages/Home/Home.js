@@ -1,10 +1,5 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-<<<<<<< HEAD
-import { Grid, Paper } from "@material-ui/core";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-=======
 import {
   Container,
   ButtonGroup,
@@ -16,7 +11,6 @@ import {
 // import Gmap from "../../components/GMap/GMap";
 // import Paper from "@material-ui/core/Paper";
 // import Grid from "@material-ui/core/Grid";
->>>>>>> ccbb84eb0e7c7fb48d3149b6a13b806016bcbda1
 
 import "./Home.css";
 import GoogleMap from "../../components/GoogleMap/GoogleMap";
