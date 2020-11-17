@@ -33,6 +33,7 @@ export class MapContainer extends Component {
       .then((results) => getLatLng(results[0]))
       .then((latLng) => {
         console.log("Success", latLng);
+        // api call for food truck
         this.setState({ address });
         this.setState({ mapCenter: latLng });
       })
@@ -40,6 +41,15 @@ export class MapContainer extends Component {
   };
 
   render() {
+    const mapStyle = {
+      width: "95%",
+      height: "65%",
+      "margin-left": "auto",
+      "margin-right": "auto",
+      "margin-top": "10px",
+      "z-index": "-1",
+      position: "absolute",
+    };
     return (
       <div id="googleMap">
         <PlacesAutocomplete
@@ -87,6 +97,7 @@ export class MapContainer extends Component {
         </PlacesAutocomplete>
 
         <Map
+          style={mapStyle}
           google={this.props.google}
           initialCenter={{
             lat: this.state.mapCenter.lat,
