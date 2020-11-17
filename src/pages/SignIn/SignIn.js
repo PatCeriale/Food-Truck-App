@@ -63,7 +63,17 @@ export default function SignIn() {
         <form className={classes.form} noValidate>
           
 
-
+        <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="email"
+            label="Email"
+            type="text"
+            id="email"
+            autoComplete="current-email"
+          />
           <TextField
             variant="outlined"
             margin="normal"
