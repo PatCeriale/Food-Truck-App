@@ -11,3 +11,8 @@ paper {
   padding: 120px;
   text-align: center;
 }
+.grid {
+  display: block;
+  position: absolute;
+  top: 80%;
+}
