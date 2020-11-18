@@ -6,6 +6,7 @@ import {
   Grid,
   TextareaAutosize,
 } from "@material-ui/core";
+import StarRating from "../StarRating/StarRating";
 import "./TruckCard.css";
 
 export default function TruckCard() {
@@ -43,32 +44,12 @@ export default function TruckCard() {
           <Grid item xs={8} s={6} spacing={1}>
             Write a review for this food truck!
             <br />
-            <ButtonGroup
-              color="primary"
-              aria-label="outlined primary button group"
-              size="small"
-            >
-              <Button>
-                <i class="far fa-star"></i>
-              </Button>
-              <Button>
-                <i class="far fa-star"></i>
-              </Button>
-              <Button>
-                <i class="far fa-star"></i>
-              </Button>
-              <Button>
-                <i class="far fa-star"></i>
-              </Button>
-              <Button>
-                <i class="far fa-star"></i>
-              </Button>
-            </ButtonGroup>
             <TextareaAutosize
               rowsMin={1}
               className="textArea"
               placeholder="What did you think?"
             ></TextareaAutosize>
+            <StarRating />
           </Grid>
           <Grid item xs={12} spacing={1}>
             <Button variant="contained" color="primary">
