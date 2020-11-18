@@ -92,13 +92,13 @@ export default function SignIn() {
             margin="normal"
             required
             fullWidth
-            name="email"
-            label="Email"
-            type="email"
-            id="email"
-            autoComplete="current-email"
+            name="username"
+            label="Username"
+            type="username"
+            id="username"
+            autoComplete="current-username"
             onChange={handleInputChange}
-            value={mystate.email}
+            value={mystate.username}
           />
           
 
