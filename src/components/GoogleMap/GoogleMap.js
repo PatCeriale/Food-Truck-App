@@ -5,6 +5,8 @@ import PlacesAutocomplete, {
   getLatLng,
 } from "react-places-autocomplete";
 import "./GoogleMap.css";
+import { getTrucks } from "../../utils/Api";
+import { Height } from "@material-ui/icons";
 
 //note: code formatted for ES6 here
 export class MapContainer extends Component {
@@ -21,7 +23,12 @@ export class MapContainer extends Component {
         lat: 47.606,
         lng: -122.33,
       },
+      foodTrucks: [],
     };
+  }
+
+  componentDidMount() {
+    getTrucks().then((res) => console.table(res));
   }
 
   handleChange = (address) => {
@@ -33,9 +40,9 @@ export class MapContainer extends Component {
       .then((results) => getLatLng(results[0]))
       .then((latLng) => {
         console.log("Success", latLng);
-        // api call for food truck
         this.setState({ address });
         this.setState({ mapCenter: latLng });
+        // axios request for pins
       })
       .catch((error) => console.error("Error", error));
   };
@@ -46,7 +53,7 @@ export class MapContainer extends Component {
       height: "65%",
       "margin-left": "auto",
       "margin-right": "auto",
-      "margin-top": "10px",
+      "margin-top": "auto",
       "z-index": "-1",
       position: "absolute",
     };
