@@ -6,10 +6,23 @@ import {
   Grid,
   TextareaAutosize,
 } from "@material-ui/core";
-import StarRating from "../StarRating/StarRating";
 import "./TruckCard.css";
+import { useState } from "react";
+import { submitReview } from "../../utils/Api";
 
-export default function TruckCard() {
+export default function TruckCard({ vendorId }) {
+  const [rating, setRating] = useState(0);
+  const [reviewText, setReviewText] = useState("");
+  const fullStar = <i class="fas fa-star"></i>;
+  const emptyStar = <i class="far fa-star"></i>;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!rating) return;
+    console.log(rating, reviewText);
+    submitReview({ rating, reviewText, vendorId });
+  };
+
   return (
     <div className="TruckCard">
       <Container className="Container" maxWidth="sm">
@@ -40,21 +53,41 @@ export default function TruckCard() {
           </Grid>
           <Grid item xs={6} spacing={3}>
             <span className="right">Global Rating: rating/5</span>
-          </Grid>
+          </Grid>{" "}
           <Grid item xs={8} s={6} spacing={1}>
-            Write a review for this food truck!
-            <br />
-            <TextareaAutosize
-              rowsMin={1}
-              className="textArea"
-              placeholder="What did you think?"
-            ></TextareaAutosize>
-            <StarRating />
-          </Grid>
-          <Grid item xs={12} spacing={1}>
-            <Button variant="contained" color="primary">
-              Submit Review
-            </Button>
+            <form onSubmit={handleSubmit}>
+              Write a review for this food truck!
+              <br />
+              <ButtonGroup
+                color="primary"
+                aria-label="outlined primary button group"
+                size="small"
+              >
+                {Array(5)
+                  .fill()
+                  .map((_, i) => (
+                    <Button
+                      key={i}
+                      color={rating >= i + 1 ? "primary" : "default"}
+                      onClick={() => setRating(i + 1)}
+                    >
+                      {rating >= i + 1
+                        ? (className = "fullStar")
+                        : (className = "emptyStar")}
+                    </Button>
+                  ))}
+              </ButtonGroup>
+              <TextareaAutosize
+                rowsMin={1}
+                className="textArea"
+                placeholder="What did you think?"
+                value={reviewText}
+                onChange={(e) => setReviewText(e.target.value)}
+              ></TextareaAutosize>{" "}
+              <Button type="submit" variant="contained" color="primary">
+                Submit Review
+              </Button>
+            </form>
           </Grid>
         </Grid>
       </Container>

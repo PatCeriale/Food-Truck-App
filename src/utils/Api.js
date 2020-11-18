@@ -1,14 +1,10 @@
-import axios from 'axios'
+import axios from "axios";
+axios.baseURL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
-const API = {
+export const createNewUser = function (userData) {
+  return axios.post("/newuser", userData);
+};
 
-createNewUSer: function (userData){
-return axios.post("http://localhost:5000/newuser", userData)
-}
-
-
-}
-
-export default API
-
-
+export const submitReview = function (reviewData) {
+  return axios.post("/newreview", reviewData);
+};
