@@ -1,7 +1,9 @@
 import { makeStyles } from "@material-ui/core/styles";
+import StarBorderIcon from "@material-ui/icons/StarBorder";
 import {
   Container,
   ButtonGroup,
+  IconButton,
   Button,
   Grid,
   TextareaAutosize,
@@ -13,12 +15,11 @@ import { submitReview } from "../../utils/Api";
 export default function TruckCard({ vendorId }) {
   const [rating, setRating] = useState(0);
   const [reviewText, setReviewText] = useState("");
-  const fullStar = <i class="fas fa-star"></i>;
-  const emptyStar = <i class="far fa-star"></i>;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!rating) return;
+    // TODO: remove console.log
     console.log(rating, reviewText);
     submitReview({ rating, reviewText, vendorId });
   };
@@ -66,15 +67,14 @@ export default function TruckCard({ vendorId }) {
                 {Array(5)
                   .fill()
                   .map((_, i) => (
-                    <Button
+                    <IconButton
                       key={i}
                       color={rating >= i + 1 ? "primary" : "default"}
                       onClick={() => setRating(i + 1)}
+                      size={rating >= i + 1 ? "large" : "small"}
                     >
-                      {rating >= i + 1
-                        ? (className = "fullStar")
-                        : (className = "emptyStar")}
-                    </Button>
+                      <StarBorderIcon />
+                    </IconButton>
                   ))}
               </ButtonGroup>
               <TextareaAutosize
