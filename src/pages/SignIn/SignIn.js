@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -13,6 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import "./SignIn.css";
+import API from "../../utils/Api";
 
 // function Copyright() {
 //   return (
@@ -48,7 +49,32 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignIn() {
-  const classes = useStyles();
+  
+  const [mystate, setMyState]= useState({
+    email:"",
+    password:""
+  })
+ const classes = useStyles();
+
+  const handleInputChange = event =>{
+
+    const {name, value} = event.target
+
+    setMyState({
+      ...mystate,
+      [name]:value
+
+    })
+  }
+
+  const handleSubmitClick = event =>{
+   event.preventDefault();
+   console.log(mystate);
+
+   API.createSignIn(mystate).then((res) => {
+     console.log("user found,", res);
+    }).catch(error => console.log("email password does not exist", error));
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -61,6 +87,19 @@ export default function SignIn() {
           Sign in
         </Typography>
         <form className={classes.form} noValidate>
+        <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="username"
+            label="Username"
+            type="username"
+            id="username"
+            autoComplete="current-username"
+            onChange={handleInputChange}
+            value={mystate.username}
+          />
           
 
 
@@ -74,6 +113,8 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={handleInputChange}
+            value={mystate.password}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -85,6 +126,7 @@ export default function SignIn() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={handleSubmitClick}
           >
             Sign In
           </Button>
