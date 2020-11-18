@@ -6,6 +6,7 @@ import PlacesAutocomplete, {
 } from "react-places-autocomplete";
 import "./GoogleMap.css";
 import { getTrucks } from "../../utils/Api";
+import { Height } from "@material-ui/icons";
 
 //note: code formatted for ES6 here
 export class MapContainer extends Component {
@@ -47,6 +48,15 @@ export class MapContainer extends Component {
   };
 
   render() {
+    const mapStyle = {
+      width: "95%",
+      height: "65%",
+      "margin-left": "auto",
+      "margin-right": "auto",
+      "margin-top": "auto",
+      "z-index": "-1",
+      position: "absolute",
+    };
     return (
       <div id="googleMap">
         <PlacesAutocomplete
@@ -94,6 +104,7 @@ export class MapContainer extends Component {
         </PlacesAutocomplete>
 
         <Map
+          style={mapStyle}
           google={this.props.google}
           initialCenter={{
             lat: this.state.mapCenter.lat,
