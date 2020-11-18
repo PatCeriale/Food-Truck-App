@@ -11,10 +11,8 @@ export default function Review() {
           reviewCreated
         </Grid>
         <Grid item xs={6} spacing={6} className="rating-stars">
-          User Rating: <i class="far fa-star"></i>
-          <i class="far fa-star"></i>
-          <i class="far fa-star"></i>
-          <i class="far fa-star"></i>
+          User Rating:
+          {/* for loop with length of stars given? */}
           <i class="far fa-star"></i>
         </Grid>{" "}
         <Grid item xs={12} spacing={12}>
