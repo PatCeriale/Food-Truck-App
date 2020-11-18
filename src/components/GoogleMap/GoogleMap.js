@@ -5,7 +5,7 @@ import PlacesAutocomplete, {
   getLatLng,
 } from "react-places-autocomplete";
 import "./GoogleMap.css";
-import API from "../../utils/Api";
+import { getTrucks } from "../../utils/Api";
 
 //note: code formatted for ES6 here
 export class MapContainer extends Component {
@@ -27,7 +27,7 @@ export class MapContainer extends Component {
   }
 
   componentDidMount() {
-    API.getTrucks().then((res) => console.table(res));
+    getTrucks().then((res) => console.table(res));
   }
 
   handleChange = (address) => {
