@@ -68,10 +68,10 @@ export default function SignIn() {
             margin="normal"
             required
             fullWidth
-            name="email"
-            label="Email"
+            name="username"
+            label="Username"
             type="text"
-            id="email"
+            id="username"
             autoComplete="current-email"
           />
           <TextField
