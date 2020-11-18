@@ -11,7 +11,7 @@ import Location from "./pages/Location/Location";
 import Search from "./pages/Search/Search";
 import Truck from "./pages/Truck/Truck";
 // import "./app.css";
-import "./App.css";
+import "./app.css";
 
 function App() {
   return (
