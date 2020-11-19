@@ -7,7 +7,6 @@ import Home from "./pages/Home/Home";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
 import User from "./pages/User/User";
-import Location from "./pages/Location/Location";
 import Search from "./pages/Search/Search";
 import Truck from "./pages/Truck/Truck";
 // import "./app.css";
