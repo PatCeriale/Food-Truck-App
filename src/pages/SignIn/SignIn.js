@@ -52,14 +52,17 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
   const history = useHistory();
-  const [mystate, setMyState] = useState({
-    username: "",
+  // const [mystate, setMyState] = useState({
+  //   username: "",
   const [mystate, setMyState] = useState({
     email: "",
     password: "",
   });
   const classes = useStyles();
-
+  const handleSubmitClick = (event) => {
+    event.preventDefault();
+    console.log(mystate);
+  };
   const handleInputChange = (event) => {
     event.preventDefault();
     const { name, value } = event.target;
@@ -80,9 +83,6 @@ export default function SignIn() {
         history.push("/user");
       })
       .catch((error) => console.log("user login failed:", error));
-  const handleSubmitClick = (event) => {
-    event.preventDefault();
-    console.log(mystate);
 
     createSignIn(mystate)
       .then((res) => {
@@ -103,10 +103,7 @@ export default function SignIn() {
         </Typography>
         <form className={classes.form} noValidate onSubmit={handleFormSubmit}>
           {/* //add submit handler, prevent default */}
-        <form className={classes.form} noValidate>
-
-          
-
+          {/* <form className={classes.form} noValidate> */}
 
           <TextField
             variant="outlined"
@@ -120,14 +117,13 @@ export default function SignIn() {
             value={mystate.username}
             onChange={handleInputChange}
             autoComplete="current-email"
-            />
-            type="username"
+          />
+          {/* type="username"
             id="username"
             autoComplete="current-username"
             onChange={handleInputChange}
             value={mystate.username}
-          />
-
+          /> */}
 
           <TextField
             variant="outlined"
