@@ -5,7 +5,7 @@ import PlacesAutocomplete, {
   getLatLng,
 } from "react-places-autocomplete";
 import "./GoogleMap.css";
-import { getTrucks } from "../../utils/Api";
+import { getGeolocation, getTrucks } from "../../utils/Api";
 import { Height } from "@material-ui/icons";
 
 //note: code formatted for ES6 here
@@ -28,14 +28,28 @@ export class MapContainer extends Component {
   }
 
   componentDidMount() {
-    getTrucks("Tacoma,WA,USA").then((res) => {
-      console.log(res);
-      const results = res.data.results.map((r) => ({
-        name: r.name,
-        icon: r.icon,
-      }));
-      this.setState({ foodTrucks: results });
-      this.props.setFoodTrucks(results);
+    // userinput.replace(" ","+")
+
+    // move all to handle select
+    getGeolocation("new+york").then((data) => {
+      console.log(data);
+      var location =
+        data.data.results[0].geometry.location.lat +
+        "," +
+        data.data.results[0].geometry.location.lng;
+      console.log(location);
+
+      getTrucks(location).then((res) => {
+        console.log(res);
+
+        const results = res.data.results.map((r) => ({
+          name: r.name,
+          icon2: r.icon,
+          status: r.business_status,
+        }));
+        this.setState({ foodTrucks: results });
+        this.props.setFoodTrucks(results);
+      });
     });
   }
 

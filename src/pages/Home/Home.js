@@ -40,7 +40,8 @@ export default function Home() {
             foodTrucks.map((f) => (
               <div>
                 <p>{f.name}</p>
-                <img src={f.icon}></img>
+                {/* <img src={f.icon2}></img> */}
+                <p>{f.status}</p>
               </div>
             ))}
         </Grid>
