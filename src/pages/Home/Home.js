@@ -42,6 +42,7 @@ export default function Home() {
                 <p>{f.name}</p>
                 {/* <img src={f.icon2}></img> */}
                 <p>{f.status}</p>
+                <p>{f.place}</p>
               </div>
             ))}
         </Grid>

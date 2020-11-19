@@ -59,6 +59,7 @@ export class MapContainer extends Component {
               name: r.name,
               icon2: r.icon,
               status: r.business_status,
+              place: r.place_id,
             }));
             this.setState({ foodTrucks: results });
             this.props.setFoodTrucks(results);
