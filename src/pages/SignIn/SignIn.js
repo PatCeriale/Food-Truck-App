@@ -15,6 +15,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import "./SignIn.css";
 import { signInUser } from "../../utils/Api";
+import { createSignIn } from "../../utils/Api";
 
 // function Copyright() {
 //   return (
@@ -53,6 +54,8 @@ export default function SignIn() {
   const history = useHistory();
   const [mystate, setMyState] = useState({
     username: "",
+  const [mystate, setMyState] = useState({
+    email: "",
     password: "",
   });
   const classes = useStyles();
@@ -77,6 +80,15 @@ export default function SignIn() {
         history.push("/user");
       })
       .catch((error) => console.log("user login failed:", error));
+  const handleSubmitClick = (event) => {
+    event.preventDefault();
+    console.log(mystate);
+
+    createSignIn(mystate)
+      .then((res) => {
+        console.log("user found,", res);
+      })
+      .catch((error) => console.log("email password does not exist", error));
   };
 
   return (
@@ -91,6 +103,10 @@ export default function SignIn() {
         </Typography>
         <form className={classes.form} noValidate onSubmit={handleFormSubmit}>
           {/* //add submit handler, prevent default */}
+        <form className={classes.form} noValidate>
+
+          
+
 
           <TextField
             variant="outlined"
@@ -105,6 +121,14 @@ export default function SignIn() {
             onChange={handleInputChange}
             autoComplete="current-email"
             />
+            type="username"
+            id="username"
+            autoComplete="current-username"
+            onChange={handleInputChange}
+            value={mystate.username}
+          />
+
+
           <TextField
             variant="outlined"
             margin="normal"
@@ -117,6 +141,9 @@ export default function SignIn() {
             value={mystate.password}
             onChange={handleInputChange}
             autoComplete="current-password"
+            // autoComplete="current-password"
+            onChange={handleInputChange}
+            value={mystate.password}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -128,6 +155,7 @@ export default function SignIn() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={handleSubmitClick}
           >
             Sign In
           </Button>
