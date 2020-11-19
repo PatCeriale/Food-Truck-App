@@ -2,6 +2,7 @@
 import React, {useState} from "react";
 
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 import {
   Avatar,
@@ -45,6 +46,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 export default function SignUp() {
+  const history = useHistory();
+
 
 
   const [mystate, setMyState]= useState({
@@ -131,6 +134,7 @@ export default function SignUp() {
     createNewUser(mystate)
       .then((res) => {
         console.log(res);
+        history.push("/user")
       })
       .catch((error) => console.log("user registration failed:", error));
   };
