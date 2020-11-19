@@ -31,9 +31,6 @@ function App() {
           <Route exact path="/user">
             <User />
           </Route>
-          <Route exact path="/location">
-            <Location />
-          </Route>
           <Route exact path="/search">
             <Search />
           </Route>
