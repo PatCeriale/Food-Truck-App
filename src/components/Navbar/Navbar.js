@@ -38,6 +38,7 @@ const navLinks = [
   { title: `Search for Food Trucks`, path: `/search` },
   { title: `Sign In`, path: `/signin` },
   { title: `Sign Up`, path: `/signup` },
+  { title: `Log Out`, path: `/logout` },
 ];
 
 const Header = () => {

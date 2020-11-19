@@ -40,9 +40,14 @@ export class MapContainer extends Component {
       .then((results) => getLatLng(results[0]))
       .then((latLng) => {
         console.log("Success", latLng);
+        // api call for food truck
         this.setState({ address });
         this.setState({ mapCenter: latLng });
+
+        console.log({address})
+
         // axios request for pins
+
       })
       .catch((error) => console.error("Error", error));
   };

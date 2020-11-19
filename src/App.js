@@ -19,25 +19,25 @@ function App() {
       <div className="content-wrap">
         <Navbar />
         <Switch>
-          <Route exact path={["/Home", "/"]}>
+          <Route exact path={["/Home", "/", "/logout"]}>
             <Home />
           </Route>
-          <Route exact path={["/SignIn"]}>
+          <Route exact path="/SignIn">
             <SignIn />
           </Route>
-          <Route exact path={["/SignUp"]}>
+          <Route exact path="/SignUp">
             <SignUp />
           </Route>
-          <Route exact path={["/user"]}>
+          <Route exact path="/user">
             <User />
           </Route>
-          <Route exact path={["/location"]}>
+          <Route exact path="/location">
             <Location />
           </Route>
-          <Route exact path={["/search"]}>
+          <Route exact path="/search">
             <Search />
           </Route>
-          <Route exact path={["/truck"]}>
+          <Route exact path="/truck">
             <Truck />
           </Route>
         </Switch>
