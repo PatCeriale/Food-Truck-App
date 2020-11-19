@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Container,
@@ -29,18 +29,20 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Home() {
   const classes = useStyles();
+  const [foodTrucks, setFoodTrucks] = useState([]);
 
   return (
     <div>
-      <GoogleMap />
+      <GoogleMap setFoodTrucks={setFoodTrucks} />
       <div>
         <Grid container spacing={6} className="grid">
-          <Grid item xs={6}>
-            <Paper className={classes.paper}>xs=6</Paper>{" "}
-          </Grid>
-          <Grid item xs={6}>
-            <Paper className={classes.paper}>xs=6</Paper>{" "}
-          </Grid>
+          {foodTrucks.length &&
+            foodTrucks.map((f) => (
+              <div>
+                <p>{f.name}</p>
+                <img src={f.icon}></img>
+              </div>
+            ))}
         </Grid>
       </div>
     </div>

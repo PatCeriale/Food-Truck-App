@@ -28,7 +28,15 @@ export class MapContainer extends Component {
   }
 
   componentDidMount() {
-    getTrucks().then((res) => console.table(res));
+    getTrucks("Tacoma,WA,USA").then((res) => {
+      console.log(res);
+      const results = res.data.results.map((r) => ({
+        name: r.name,
+        icon: r.icon,
+      }));
+      this.setState({ foodTrucks: results });
+      this.props.setFoodTrucks(results);
+    });
   }
 
   handleChange = (address) => {
