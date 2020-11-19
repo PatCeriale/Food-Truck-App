@@ -43,11 +43,6 @@ export default function Home() {
 
   return (
 
-   
-    <div>
-      <GoogleMap />
-      
-
     <div>
       <GoogleMap />
 
