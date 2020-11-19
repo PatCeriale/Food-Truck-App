@@ -41,7 +41,6 @@ export default function Home() {
   return (
     <div>
       <GoogleMap setFoodTrucks={setFoodTrucks} />
-      <GoogleMap />
 
       <div>
         <Grid container spacing={6} className="grid">
