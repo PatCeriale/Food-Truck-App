@@ -53,7 +53,7 @@ export class MapContainer extends Component {
       height: "65%",
       "margin-left": "auto",
       "margin-right": "auto",
-      "margin-top": "auto",
+      "margin-top": "10px",
       "z-index": "-1",
       position: "absolute",
     };
