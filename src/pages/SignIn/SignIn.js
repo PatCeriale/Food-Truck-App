@@ -68,7 +68,7 @@ export default function SignIn() {
     event.preventDefault();
     console.log(mystate);
 
-    API.createSignIn(mystate)
+    createSignIn(mystate)
       .then((res) => {
         console.log("user found,", res);
       })
@@ -109,7 +109,7 @@ export default function SignIn() {
             label="Password"
             type="password"
             id="password"
-            autoComplete="current-password"
+            // autoComplete="current-password"
             onChange={handleInputChange}
             value={mystate.password}
           />
