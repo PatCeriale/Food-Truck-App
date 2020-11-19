@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+
 import {
   Avatar,
   Button,
@@ -32,6 +34,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 export default function SignUp() {
+  const history = useHistory();
+
   const [mystate, setMyState] = useState({
     username: "",
     password: "",
@@ -49,14 +53,52 @@ export default function SignUp() {
   //   location: ""
   // };
 
+  // const handleInputChange = event =>{
+
+  // const [mystate, setMyState] = useState({
+  //   username: "",
+  //   password: "",
+  //   email: "",
+  //   location: "",
+  // });
+  // const classes = useStyles();
+
+  //class SignUp extends Component () {
+
+  // state = {
+  //   username: "",
+  //   email: "",
+  //   password: "",
+  //   location: ""
+  // };
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
 
     setMyState({
       ...mystate,
+
       [name]: value,
     });
   };
+
+  // const handleFormSubmit = event => {
+  //   event.preventDefault();
+  //   console.log(mystate)
+
+  //   API.createNewUSer(mystate).then((res)=>{
+  //     console.log(res)
+  //   }).catch(error => console.log("user registration failed:", error));
+
+  // }
+
+  //handleFormSubmit
+  //set UseState to capture user info
+  //submit to send user info API.createNewUser
+
+  //     [name]: value,
+  //   });
+  // };
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -65,6 +107,7 @@ export default function SignUp() {
     createNewUser(mystate)
       .then((res) => {
         console.log(res);
+        history.push("/user");
       })
       .catch((error) => console.log("user registration failed:", error));
   };
@@ -85,6 +128,7 @@ export default function SignUp() {
         </Typography>
         <form className={classes.form} noValidate onSubmit={handleFormSubmit}>
           <TextField
+            onChange={handleInputChange}
             onChange={handleInputChange}
             variant="outlined"
             margin="normal"
@@ -111,6 +155,7 @@ export default function SignUp() {
           />
           <TextField
             onChange={handleInputChange}
+            onChange={handleInputChange}
             variant="outlined"
             margin="normal"
             required
@@ -122,6 +167,7 @@ export default function SignUp() {
             autoComplete="current-password"
           />
           <TextField
+            onChange={handleInputChange}
             onChange={handleInputChange}
             variant="outlined"
             margin="normal"
@@ -135,6 +181,9 @@ export default function SignUp() {
           />
           <Button
             // onSubmit={handleFormSubmit}
+
+            // onSubmit={handleFormSubmit}
+
             type="submit"
             fullWidth
             variant="contained"

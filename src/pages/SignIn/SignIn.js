@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -13,6 +14,8 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import "./SignIn.css";
+import { signInUser } from "../../utils/Api";
+import { createSignIn } from "../../utils/Api";
 
 // function Copyright() {
 //   return (
@@ -48,7 +51,45 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignIn() {
+  const history = useHistory();
+  // const [mystate, setMyState] = useState({
+  //   username: "",
+  const [mystate, setMyState] = useState({
+    email: "",
+    password: "",
+  });
   const classes = useStyles();
+  const handleSubmitClick = (event) => {
+    event.preventDefault();
+    console.log(mystate);
+  };
+  const handleInputChange = (event) => {
+    event.preventDefault();
+    const { name, value } = event.target;
+
+    setMyState({
+      ...mystate,
+      [name]: value,
+    });
+  };
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    console.log(mystate);
+
+    signInUser(mystate)
+      .then((res) => {
+        console.log(res);
+        history.push("/user");
+      })
+      .catch((error) => console.log("user login failed:", error));
+
+    createSignIn(mystate)
+      .then((res) => {
+        console.log("user found,", res);
+      })
+      .catch((error) => console.log("email password does not exist", error));
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -60,9 +101,29 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
-          
+        <form className={classes.form} noValidate onSubmit={handleFormSubmit}>
+          {/* //add submit handler, prevent default */}
+          {/* <form className={classes.form} noValidate> */}
 
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="username"
+            label="Username"
+            type="text"
+            id="username"
+            value={mystate.username}
+            onChange={handleInputChange}
+            autoComplete="current-email"
+          />
+          {/* type="username"
+            id="username"
+            autoComplete="current-username"
+            onChange={handleInputChange}
+            value={mystate.username}
+          /> */}
 
           <TextField
             variant="outlined"
@@ -73,7 +134,12 @@ export default function SignIn() {
             label="Password"
             type="password"
             id="password"
+            value={mystate.password}
+            onChange={handleInputChange}
             autoComplete="current-password"
+            // autoComplete="current-password"
+            onChange={handleInputChange}
+            value={mystate.password}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -85,6 +151,7 @@ export default function SignIn() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={handleSubmitClick}
           >
             Sign In
           </Button>
