@@ -1,20 +1,13 @@
-
-import axios from 'axios'
+import axios from "axios";
 
 const API = {
+  createNewUSer: function (userData) {
+    return axios.post("http://localhost:5000/newuser", userData);
+  },
+};
 
-createNewUSer: function (userData){
-return axios.post("http://localhost:5000/newuser", userData)
-}
+// export default API
 
-
-}
-
-export default API
-
-
-
-import axios from "axios";
 axios.baseURL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 // const API = {
@@ -30,7 +23,10 @@ axios.baseURL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 // 6bbe75058e694349c9a0bd5aa79d24dfd14ec15d
 
 export const createNewUser = function (userData) {
-  return axios.post("/newuser", userData);
+  return axios.post("/signup", userData);
+};
+export const signInUser = function (userData) {
+  return axios.post("/signin", userData);
 };
 
 export const submitReview = function (reviewData) {
@@ -40,4 +36,3 @@ export const submitReview = function (reviewData) {
 export const createSignIn = function (userData) {
   return axios.post("http:/localhost:3000/signin", userData);
 };
-
