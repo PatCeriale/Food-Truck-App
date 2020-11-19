@@ -8,10 +8,12 @@ import {
   ListItem,
   ListItemText,
   Hidden,
+  CardMedia,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core";
 import { Home } from "@material-ui/icons";
 import SideDrawer from "./SideDrawer";
+import Logo from "./TruckNTasty.png";
 
 const useStyles = makeStyles({
   navbarDisplayFlex: {
@@ -51,7 +53,7 @@ const Header = () => {
             aria-label="home"
             path="/home"
           >
-            <Home fontSize="large" />
+            <img src={Logo} style={{ height: "150px", width: "150px" }} />
           </IconButton>
           <Hidden smDown>
             <List
