@@ -1,3 +1,19 @@
+
+import axios from 'axios'
+
+const API = {
+
+createNewUSer: function (userData){
+return axios.post("http://localhost:5000/newuser", userData)
+}
+
+
+}
+
+export default API
+
+
+
 import axios from "axios";
 axios.baseURL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
@@ -24,3 +40,4 @@ export const submitReview = function (reviewData) {
 export const createSignIn = function (userData) {
   return axios.post("http:/localhost:3000/signin", userData);
 };
+
