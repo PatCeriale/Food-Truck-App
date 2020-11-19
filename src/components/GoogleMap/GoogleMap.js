@@ -5,7 +5,7 @@ import PlacesAutocomplete, {
   getLatLng,
 } from "react-places-autocomplete";
 import "./GoogleMap.css";
-import { getTrucks } from "../../utils/Api";
+// import { getTrucks } from "../../utils/Api";
 import { Height } from "@material-ui/icons";
 
 //note: code formatted for ES6 here
@@ -27,9 +27,9 @@ export class MapContainer extends Component {
     };
   }
 
-  componentDidMount() {
-    getTrucks().then((res) => console.table(res));
-  }
+  // componentDidMount() {
+  //   getTrucks().then((res) => console.table(res));
+  // }
 
   handleChange = (address) => {
     this.setState({ address });
@@ -53,7 +53,7 @@ export class MapContainer extends Component {
       height: "65%",
       "margin-left": "auto",
       "margin-right": "auto",
-      "margin-top": "auto",
+      "margin-top": "10px",
       "z-index": "-1",
       position: "absolute",
     };
