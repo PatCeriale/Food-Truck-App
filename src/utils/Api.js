@@ -8,7 +8,10 @@ export const getTrucks = function () {
 };
 
 export const createNewUser = function (userData) {
-  return axios.post("/newuser", userData);
+  return axios.post("/signup", userData);
+};
+export const signInUser = function (userData) {
+  return axios.post("/signin", userData);
 };
 
 export const submitReview = function (reviewData) {
