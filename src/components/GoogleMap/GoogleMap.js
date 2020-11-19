@@ -29,28 +29,7 @@ export class MapContainer extends Component {
 
   componentDidMount() {
     // userinput.replace(" ","+")
-
     // move all to handle select
-    getGeolocation("new+york").then((data) => {
-      console.log(data);
-      var location =
-        data.data.results[0].geometry.location.lat +
-        "," +
-        data.data.results[0].geometry.location.lng;
-      console.log(location);
-
-      getTrucks(location).then((res) => {
-        console.log(res);
-
-        const results = res.data.results.map((r) => ({
-          name: r.name,
-          icon2: r.icon,
-          status: r.business_status,
-        }));
-        this.setState({ foodTrucks: results });
-        this.props.setFoodTrucks(results);
-      });
-    });
   }
 
   handleChange = (address) => {
@@ -64,6 +43,27 @@ export class MapContainer extends Component {
         console.log("Success", latLng);
         this.setState({ address });
         this.setState({ mapCenter: latLng });
+        getGeolocation(address).then((data) => {
+          console.log(data);
+          var location =
+            data.data.results[0].geometry.location.lat +
+            "," +
+            data.data.results[0].geometry.location.lng;
+          console.log(location);
+          console.log(address);
+
+          getTrucks(location).then((res) => {
+            console.log(res);
+
+            const results = res.data.results.map((r) => ({
+              name: r.name,
+              icon2: r.icon,
+              status: r.business_status,
+            }));
+            this.setState({ foodTrucks: results });
+            this.props.setFoodTrucks(results);
+          });
+        });
         // axios request for pins
       })
       .catch((error) => console.error("Error", error));
