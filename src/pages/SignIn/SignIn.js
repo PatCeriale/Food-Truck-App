@@ -62,14 +62,9 @@ export default function SignIn() {
     password: "",
   });
   const classes = useStyles();
-  const handleSubmitClick = (event) => {
-    event.preventDefault();
-    console.log(mystate);
-  };
-  const handleInputChange = (event) => {
-    event.preventDefault();
 
   const handleInputChange = (event) => {
+    event.preventDefault();
     const { name, value } = event.target;
 
     setMyState({
@@ -88,7 +83,7 @@ export default function SignIn() {
         history.push("/user");
       })
       .catch((error) => console.log("user login failed:", error));
-
+  };
   const handleSubmitClick = (event) => {
     event.preventDefault();
     console.log(mystate);
@@ -114,7 +109,6 @@ export default function SignIn() {
           {/* //add submit handler, prevent default */}
           {/* <form className={classes.form} noValidate> */}
 
-        <form className={classes.form} noValidate>
           <TextField
             variant="outlined"
             margin="normal"
@@ -128,7 +122,6 @@ export default function SignIn() {
             onChange={handleInputChange}
             autoComplete="current-email"
           />
-        
 
           <TextField
             variant="outlined"
@@ -142,7 +135,6 @@ export default function SignIn() {
             value={mystate.password}
             onChange={handleInputChange}
             autoComplete="current-password"
-
             // autoComplete="current-password"
             onChange={handleInputChange}
             value={mystate.password}
