@@ -33,7 +33,7 @@ function App() {
           <Route exact path="/search">
             <Search />
           </Route>
-          <Route exact path="/truck">
+          <Route path={["/truck"]}>
             <Truck />
           </Route>
         </Switch>
