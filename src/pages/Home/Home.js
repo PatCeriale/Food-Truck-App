@@ -7,10 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 // import Paper from "@material-ui/core/Paper";
 // import Grid from "@material-ui/core/Grid";
 
-import {
- Grid,
- Paper,
-} from "@material-ui/core";
+import { Grid, Paper } from "@material-ui/core";
 // import Gmap from "../../components/GMap/GMap";
 // import Paper from "@material-ui/core/Paper";
 // import Grid from "@material-ui/core/Grid";
@@ -37,7 +34,6 @@ export default function Home() {
   return (
     <div>
       <GoogleMap setFoodTrucks={setFoodTrucks} />
-      <GoogleMap />
 
       <div>
         <Grid container spacing={6} className="grid">

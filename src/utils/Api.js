@@ -1,7 +1,6 @@
 import axios from "axios";
 
 // eslint-disable-next-line no-unused-vars
-=======
 export const getTrucks = function (location) {
   return axios.get(
     `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=1500&type=restaurant&keyword=food%20truck&key=AIzaSyDuPsN0ojCj-Ii8azSMi47no7xGpJZ7d20`
@@ -20,8 +19,6 @@ const API = {
 };
 
 axios.baseURL = process.env.REACT_APP_API_URL || "http://localhost:5000";
-
-
 
 export const createNewUser = function (userData) {
   return axios.post("/signup", userData);
