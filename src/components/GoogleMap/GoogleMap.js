@@ -6,6 +6,8 @@ import PlacesAutocomplete, {
   getLatLng,
 } from "react-places-autocomplete";
 import "./GoogleMap.css";
+import { getGeolocation, getTrucks } from "../../utils/Api";
+
 // import { getTrucks } from "../../utils/Api";
 
 
@@ -31,6 +33,9 @@ export class MapContainer extends Component {
   componentDidMount() {
     // getTrucks().then((res) => console.table(res));
   }
+
+
+
 
   handleChange = (address) => {
     this.setState({ address });
@@ -68,6 +73,28 @@ export class MapContainer extends Component {
         // api call for food truck
         this.setState({ address });
         this.setState({ mapCenter: latLng });
+        getGeolocation(address).then((data) => {
+          console.log(data);
+          var location =
+            data.data.results[0].geometry.location.lat +
+            "," +
+            data.data.results[0].geometry.location.lng;
+          console.log(location);
+          console.log(address);
+
+          getTrucks(location).then((res) => {
+            console.log(res);
+
+            const results = res.data.results.map((r) => ({
+              name: r.name,
+              icon2: r.icon,
+              status: r.business_status,
+              place: r.place_id,
+            }));
+            this.setState({ foodTrucks: results });
+            this.props.setFoodTrucks(results);
+          });
+        });
 
         console.log({address})
 
