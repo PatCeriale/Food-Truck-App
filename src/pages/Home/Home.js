@@ -40,10 +40,12 @@ export default function Home() {
           {foodTrucks.length &&
             foodTrucks.map((f) => (
               <div>
-                <p>{f.name}</p>
+                {/* <p>{f.name}</p> */}
                 {/* <img src={f.icon2}></img> */}
-                <p>{f.status}</p>
+                {/* <p>{f.status}</p>
                 <p>{f.place}</p>
+                <p>{f.lat}</p> */}
+                {/* <p></p> */}
               </div>
             ))}
         </Grid>
