@@ -1,50 +1,99 @@
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import Truck from "../Truck/Truck";
+import TruckResults from "../../components/TruckResults/TruckResults";
 import "./Search.css";
 import { getTrucks } from "../../utils/Api";
-import SearchCity from "../../components/CitySearch/CitySearch";
 import { useEffect, useState } from "react";
-import PlacesAutocomplete, {
+import PlacesAutoComplete, {
   geocodeByAddress,
   getLatLng,
 } from "react-places-autocomplete";
-// import axios
-// import getTrucks from "../../utils/Api";
+import { LocationOn } from "@material-ui/icons";
 
 export default function Search() {
-  const [truckList, setTruckList] = useState([]);
-  const [query, setQuery] = useState("");
+  const [address, setAddress] = useState("");
+  const [trucks, setTrucks] = useState([]);
+
+  // console.log(coordinates.lat, coordinates.lng);
+  // const [truckList, setTruckList] = useState([]);
   //useState array of trucks
   //
-  useEffect((query) => {
-    fetch(
-      `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${query}&radius=1500&type=restaurant&keyword=food%20truck&key=AIzaSyDuPsN0ojCj-Ii8azSMi47no7xGpJZ7d20`,
-      {
-        method: "GET",
+  useEffect(() => {
+    if (!address) return;
+    const handle = setTimeout(async () => {
+      const geoCodes = await geocodeByAddress(address);
+      const coords = await getLatLng(geoCodes[0]);
+      console.log(coords);
+      const res = await getTrucks(coords.lat, coords.lng);
+      if (res.statusText !== "OK") {
+        console.error("failed to get search results");
+        return;
       }
-    )
-      .then((res) => res.json())
-      .then((response) => {
-        console.log(response);
-        // renderToPage????
-      });
-  });
+      console.log(res);
+      setTrucks(() =>
+        res.data.results
+          //only open food trucks
+          .filter(({ business_status }) => business_status === "OPERATIONAL")
+          .map(
+            ({
+              name,
+              rating,
+              vicinity: address,
+              place_id: googleId,
+              opening_hours,
+            }) => ({
+              googleId,
+              name,
+              rating,
+              address,
+              isOpen: !!opening_hours?.open_now,
+            })
+          )
+      );
+    }, 1000);
+    return () => clearTimeout(handle);
+  }, [address]);
   // }, [vicinityOnSubmit])
   //if (loading) { return <p>Loading...</p> }
   // if (error) { return <p>Error</p> }
   return (
-    <Router>
-      <div>
-        <h1>Search Trucks</h1>
+    <div>
+      {/* <PlacesAutocomplete /> */}
+      <h1>Search Trucks</h1>
+      <PlacesAutoComplete
+        value={address}
+        onChange={setAddress}
+        onSelect={(value) => setAddress(value)}
+      >
+        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+          <div>
+            <input {...getInputProps({ placeholder: "search by city" })} />
 
-        <SearchCity></SearchCity>
-      </div>
-      <Switch>
-        <Route exact path={["/truck"]}>
-          <Truck />
-        </Route>
-        <Link to="/truck">Link to Truck Page</Link>
-      </Switch>
-    </Router>
+            <div>
+              {loading ? <div>...loading</div> : null}
+
+              {suggestions.map((suggestion, i) => {
+                const style = {
+                  backgroundColor: suggestion.active ? "aqua" : "white",
+                };
+                return (
+                  <div
+                    key={i}
+                    {...getSuggestionItemProps(
+                      suggestion,
+                      { style },
+                      { LocationOn }
+                    )}
+                  >
+                    ;{suggestion.description}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </PlacesAutoComplete>{" "}
+      {trucks?.map((truck, i) => (
+        <TruckResults key={i} {...truck} />
+      ))}
+    </div>
   );
 }

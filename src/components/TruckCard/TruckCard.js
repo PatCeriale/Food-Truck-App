@@ -9,12 +9,15 @@ import {
   TextareaAutosize,
 } from "@material-ui/core";
 import "./TruckCard.css";
-import { useState } from "react";
-import { submitReview } from "../../utils/Api";
+import { useState, useEffect } from "react";
+import { submitReview, getTruck } from "../../utils/Api";
 
 export default function TruckCard({ vendorId }) {
   const [rating, setRating] = useState(0);
   const [reviewText, setReviewText] = useState("");
+  console.log(vendorId);
+
+  // componentDidMount()(getTruck().then((res) => console.log(res)));
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -11,7 +11,7 @@ function SearchCity() {
     lat: null,
     lng: null,
   });
-  console.log(coordinates.lat, coordinates.lng);
+  // console.log(coordinates.lat, coordinates.lng);
   const handleSelect = async (value) => {
     const results = await geocodeByAddress(value);
     const latLng = await getLatLng(results[0]);
@@ -33,12 +33,13 @@ function SearchCity() {
             <div>
               {loading ? <div>...loading</div> : null}
 
-              {suggestions.map((suggestion) => {
+              {suggestions.map((suggestion, i) => {
                 const style = {
                   backgroundColor: suggestion.active ? "aqua" : "white",
                 };
                 return (
                   <div
+                    key={i}
                     {...getSuggestionItemProps(
                       suggestion,
                       { style },
