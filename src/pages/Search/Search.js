@@ -16,6 +16,7 @@ export default function Search() {
   // const [truckList, setTruckList] = useState([]);
   //useState array of trucks
   //
+
   useEffect(() => {
     if (!address) return;
     const handle = setTimeout(async () => {

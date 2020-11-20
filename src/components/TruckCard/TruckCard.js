@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core/styles";
+// import { makeStyles } from "@material-ui/core/styles";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import {
   Container,
@@ -17,7 +17,7 @@ export default function TruckCard({ vendorId }) {
   const [reviewText, setReviewText] = useState("");
   console.log(vendorId);
 
-  // componentDidMount()(getTruck().then((res) => console.log(res)));
+  // (getTruck(vendorId).then((res) => console.log(res)));
 
   const handleSubmit = (e) => {
     e.preventDefault();
