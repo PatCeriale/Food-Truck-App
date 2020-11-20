@@ -1,8 +1,7 @@
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import Truck from "../Truck/Truck";
 import "./Search.css";
-
-import SearchCity from "../../components/CitySearch/CitySearch";
+import SearchCity from "../../components/CitySearch/CitySearch" 
 
 export default function Search() {
   return (

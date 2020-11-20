@@ -37,8 +37,9 @@ function App() {
             <Truck />
           </Route>
         </Switch>
+        <Footer className="footer-container" />
       </div>
-      <Footer className="footer-container" />
+      {/* <Footer className="footer-container" /> */}
     </Router>
   );
 }
