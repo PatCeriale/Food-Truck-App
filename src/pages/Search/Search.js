@@ -1,18 +1,16 @@
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import Truck from "../Truck/Truck";
 import "./Search.css";
-import SearchCity from "../../components/CitySearch/index" 
 
-
+import SearchCity from "../../components/CitySearch/CitySearch";
 
 export default function Search() {
   return (
     <Router>
       <div>
         <h1>Search Trucks</h1>
-      
-       <SearchCity></SearchCity>
-        
+
+        <SearchCity></SearchCity>
       </div>
       <Switch>
         <Route exact path={["/truck"]}>
