@@ -24,8 +24,8 @@ const API = {
 };
 
 const baseURL =
-  process.env.REACT_APP_API_URL ||
-  "http://localhost:5000" ||
+  // process.env.REACT_APP_API_URL ||
+  // "http://localhost:5000" ||
   "https://truckntastyfood-backend.herokuapp.com/";
 
 export const createNewUser = function (userData) {
