@@ -33,12 +33,13 @@ function App() {
           <Route exact path="/search">
             <Search />
           </Route>
-          <Route exact path="/truck">
+          <Route path={["/truck"]}>
             <Truck />
           </Route>
         </Switch>
+        <Footer className="footer-container" />
       </div>
-      <Footer className="footer-container" />
+      {/* <Footer className="footer-container" /> */}
     </Router>
   );
 }
