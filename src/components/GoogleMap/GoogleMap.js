@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
+import { Map, Marker, GoogleApiWrapper,InfoWindow, } from "google-maps-react";
+
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
@@ -27,14 +28,38 @@ export class MapContainer extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   getTrucks().then((res) => console.table(res));
-  // }
+  componentDidMount() {
+    // getTrucks().then((res) => console.table(res));
+  }
 
   handleChange = (address) => {
     this.setState({ address });
   };
 
+  onMarkerClick = (props, marker, e) =>
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true
+    });
+
+    onClose = props => {
+      if (this.state.showingInfoWindow) {
+        this.setState({
+          showingInfoWindow: false,
+          activeMarker: null
+        });
+      }
+    };
+
+    onMapClicked=props=>{
+      if (this.state.showingInfoWindow) {
+        this.setState({
+          showingInfoWindow: false,
+          activeMarker: null
+        });
+      }
+    }
   handleSelect = (address) => {
     geocodeByAddress(address)
       .then((results) => getLatLng(results[0]))
@@ -120,14 +145,26 @@ export class MapContainer extends Component {
             lng: this.state.mapCenter.lng,
           }}
           onClick={this.onMapClicked}
+          zoom={14}
         >
           <Marker
             position={{
               lat: this.state.mapCenter.lat,
               lng: this.state.mapCenter.lng,
             }}
+            onClick={this.onMarkerClick}
           />
+          <InfoWindow
+          marker={this.state.activeMarker}
+          visible={this.state.showingInfoWindow}
+          onClose={this.onClose}
+        >
+          <div>
+            <h4>{this.state.selectedPlace.name}</h4>
+          </div>
+        </InfoWindow>
         </Map>
+        
       </div>
     );
   }
