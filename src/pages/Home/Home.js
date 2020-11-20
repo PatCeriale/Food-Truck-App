@@ -1,6 +1,24 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+<<<<<<< HEAD
 import {Container, ButtonGroup, Button, Grid, TextareaAutosize, Paper} from "@material-ui/core"; 
+=======
+
+// import {Container, ButtonGroup, Button, Grid, TextareaAutosize, Paper} from "@material-ui/core";
+// import Gmap from "../../components/GMap/GMap";
+
+// import Paper from "@material-ui/core/Paper";
+// import Grid from "@material-ui/core/Grid";
+
+import {
+ Grid,
+ Paper,
+} from "@material-ui/core";
+// import Gmap from "../../components/GMap/GMap";
+// import Paper from "@material-ui/core/Paper";
+// import Grid from "@material-ui/core/Grid";
+
+>>>>>>> 1db0bb398a19505c9ad63db0c9dc801931ff5c43
 import "./Home.css";
 import GoogleMap from "../../components/GoogleMap/GoogleMap";
 

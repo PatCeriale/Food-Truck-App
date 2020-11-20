@@ -129,7 +129,6 @@ export default function SignUp() {
         <form className={classes.form} noValidate onSubmit={handleFormSubmit}>
           <TextField
             onChange={handleInputChange}
-            onChange={handleInputChange}
             variant="outlined"
             margin="normal"
             required
@@ -155,7 +154,6 @@ export default function SignUp() {
           />
           <TextField
             onChange={handleInputChange}
-            onChange={handleInputChange}
             variant="outlined"
             margin="normal"
             required
@@ -167,7 +165,6 @@ export default function SignUp() {
             autoComplete="current-password"
           />
           <TextField
-            onChange={handleInputChange}
             onChange={handleInputChange}
             variant="outlined"
             margin="normal"
