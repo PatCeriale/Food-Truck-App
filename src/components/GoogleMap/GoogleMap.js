@@ -6,6 +6,7 @@ import PlacesAutocomplete, {
 } from "react-places-autocomplete";
 import "./GoogleMap.css";
 import { getGeolocation, getTrucks } from "../../utils/Api";
+
 // import { getTrucks } from "../../utils/Api";
 import { Height } from "@material-ui/icons";
 
@@ -32,6 +33,7 @@ export class MapContainer extends Component {
     // userinput.replace(" ","+")
     // move all to handle select
   }
+
   // componentDidMount() {
   //   getTrucks().then((res) => console.table(res));
   // }
