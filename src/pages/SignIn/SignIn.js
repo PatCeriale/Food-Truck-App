@@ -16,6 +16,7 @@ import Container from "@material-ui/core/Container";
 import "./SignIn.css";
 import { signInUser } from "../../utils/Api";
 import { createSignIn } from "../../utils/Api";
+import Logo from "./salmonfavicon.png";
 
 // function Copyright() {
 //   return (
@@ -96,7 +97,8 @@ export default function SignIn() {
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+          {/* <LockOutlinedIcon /> */}
+          <Logo />
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign in
