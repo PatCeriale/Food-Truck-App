@@ -23,7 +23,10 @@ const API = {
   },
 };
 
-axios.baseURL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+axios.baseURL =
+  process.env.REACT_APP_API_URL ||
+  "http://localhost:5000" ||
+  "https://truckntastyfood-backend.herokuapp.com/";
 
 export const createNewUser = function (userData) {
   return axios.post("/signup", userData);
@@ -37,5 +40,5 @@ export const submitReview = function (reviewData) {
 };
 
 export const createSignIn = function (userData) {
-  return axios.post("http:/localhost:3000/signin", userData);
+  return axios.post("/signin", userData);
 };
