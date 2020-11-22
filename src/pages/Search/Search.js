@@ -26,13 +26,13 @@ export default function Search() {
       const res = await getPlaceTrucks(coords.lat, coords.lng);
       console.log("++++++++++++++++++++++++", res, "++++++++++++++++++++++++");
 
-      const res2 = await getPlacesTrucks(res.data.results[0].place_id);
+      // const res2 = await getPlacesTrucks(res.data.results[0].place_id);
       // for (let i = 0; i < res2.length; i++) {}
       if (res.statusText !== "OK") {
         console.error("failed to get search results");
         return;
       }
-      console.log("======================", res2, "======================");
+      // console.log("======================", res2, "======================");
       setTrucks(() =>
         res.data.results
           //only open food trucks

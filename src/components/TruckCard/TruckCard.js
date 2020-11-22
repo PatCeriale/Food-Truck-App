@@ -14,16 +14,33 @@ import { submitReview, getTruck, getPlacesTrucks } from "../../utils/Api";
 export default function TruckCard({ vendorId }) {
   const [rating, setRating] = useState(0);
   const [reviewText, setReviewText] = useState("");
-  console.log(vendorId);
-  const res = getPlacesTrucks(vendorId);
-  console.log(res);
-  // (getTruck(vendorId).then((res) => console.log(res)));
+  const [truckData, setTruckData] = useState([]);
+  // useEffect(() => {
+  // console.log(vendorId);
+  // const res = getPlacesTrucks(vendorId);
+  // console.log(res);
+  // const res = async () =>{}
+  // setTruckData(
+  //   async () =>
+  //     await getTruck(vendorId).then((res) => {
+  //       return res.data.results.map((data) => {
+  //         debugger;
+  //       });
+  //     })
+  // );
+  //   await getTruck(vendorId).then((res) => {
+  //     console.log(res);
+  //     return res;
+  //   });
+  // setTruckData(() => res);
+  // // },
+  // [truckData]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!rating) return;
     // TODO: remove console.log
-    console.log(rating, reviewText);
+    // console.log(rating, reviewText);
     submitReview({ rating, reviewText, vendorId });
   };
 
@@ -39,7 +56,7 @@ export default function TruckCard({ vendorId }) {
             ></img>
           </Grid>
           <Grid item xs={9} spacing={3}>
-            <h2>Truck Name</h2>
+            <h2>Truck Name </h2>
             <hr />
           </Grid>
           <Grid item xs={3} spacing={3}>

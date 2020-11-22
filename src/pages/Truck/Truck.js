@@ -4,10 +4,11 @@ import TruckCard from "../../components/TruckCard/TruckCard";
 import Review from "../../components/Review/Review";
 // import Truck from "../../components/TruckCard/TruckCard";
 import "./Truck.css";
-import { getPlacesTrucks } from "../../utils/Api";
+import { getPlacesTrucks, getTruck } from "../../utils/Api";
 
 export default function Truck() {
   const [truckId, setTruckId] = useState("");
+  const [truckData, setTruckData] = useState({});
 
   // const [truckData, ]
 
@@ -15,6 +16,22 @@ export default function Truck() {
   const location = useLocation();
   const vendorId = new URLSearchParams(location.search).get("id");
   console.log(vendorId);
+
+  // async ( await ()=>{
+  // setTruckData(getTruck(vendorId));
+  // .then((res) => {
+  //   debugger;
+  // });
+  // })
+  // setTruckData(
+  //   async () =>
+  //     await getTruck(vendorId).then((res) => {
+  //       return res.data.results.map((data) => {
+  //         debugger;
+  //       });
+  //     })
+  // );
+
   //     const handle = setTimeout(async () => {
   //       const res = await getPlacesTrucks(vendorId);
   //   console.log(res);
