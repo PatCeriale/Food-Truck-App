@@ -89,12 +89,11 @@ export default function SignIn() {
         alert("wrong username or password");
       });
 
-      .catch((error) => console.log("user login failed:", error));
+    // .catch((error) => console.log("user login failed:", error));
   };
   const handleSubmitClick = (event) => {
     event.preventDefault();
     console.log(mystate);
-
 
     // createSignIn(mystate)
     //   .then((res) => {
