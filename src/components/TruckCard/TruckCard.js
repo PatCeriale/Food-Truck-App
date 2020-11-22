@@ -20,8 +20,8 @@ export default function TruckCard({ vendorId }) {
     console.log(vendorId);
     getPlacesTrucks(vendorId).then((data) => setTruckData(data));
     console.log(truckData.data.result);
-    // const data = truckData.data.result;
   }, [vendorId]);
+  const data = truckData.data.result;
 
   // useEffect(() => {
   // console.log(vendorId);
@@ -73,9 +73,10 @@ export default function TruckCard({ vendorId }) {
             </Button> */}
           </Grid>
           <Grid item xs={12} spacing={3}>
-            Location: {truckData.data.result.formatted_address} <br />
+            <strong>Location:</strong> {truckData.data.result.formatted_address}{" "}
             <br />
-            Website:{" "}
+            <br />
+            <strong>Website:</strong>{" "}
             <a href={truckData.data.result.website} target="_blank">
               {truckData.data.result.website}
             </a>{" "}
@@ -84,7 +85,7 @@ export default function TruckCard({ vendorId }) {
           <Grid item xs={6} spacing={3}>
             <span className="left">
               {" "}
-              Status:{" "}
+              <strong>Status:</strong>{" "}
               {truckData.data.result.opening_hours.isOpen === true
                 ? "Currently open"
                 : "Currently closed"}{" "}
@@ -93,7 +94,8 @@ export default function TruckCard({ vendorId }) {
           </Grid>
           <Grid item xs={6} spacing={3}>
             <span className="right">
-              Global Rating: <strong>{truckData.data.result.rating}</strong>/5
+              <strong>Global Rating:</strong>{" "}
+              <span className="rating">{truckData.data.result.rating}</span>/5
             </span>
           </Grid>{" "}
           <Grid item xs={8} s={6} spacing={1}>

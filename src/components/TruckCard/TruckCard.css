@@ -18,3 +18,7 @@
 .textArea {
   width: 100%;
 }
+.rating {
+  color: red;
+  font-size: large;
+}
