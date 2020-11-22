@@ -42,6 +42,12 @@ export default function Truck() {
   //   });
   // }
 
+  // useEffect(() => {
+  //   // console.log(vendorId);
+  //   getPlacesTrucks(vendorId).then((data) => setTruckData(data));
+  //   console.log(truckData.data.result);
+  // }, [vendorId]);
+
   return (
     <div className="Trucks">
       {/* TODO: get vendor id and user id to plug in */}

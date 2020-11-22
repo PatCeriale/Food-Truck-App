@@ -12,16 +12,31 @@ import { useState, useEffect } from "react";
 import { submitReview, getTruck, getPlacesTrucks } from "../../utils/Api";
 
 export default function TruckCard({ vendorId }) {
+  const [isLoading, setLoading] = useState(true);
   const [rating, setRating] = useState(0);
   const [reviewText, setReviewText] = useState("");
-  const [truckData, setTruckData] = useState([]);
+  const [truckData, setTruckData] = useState(
+    []
+    // (data = {
+    //   result: {
+    //     name: "Loading",
+    //     formatted_address: "Loading",
+    //     website: "Loading",
+    //     opening_hours: {
+    //       isOpen: false,
+    //     },
+    //     rating: 5,
+    //   },
+    // })
+  );
 
   useEffect(() => {
     console.log(vendorId);
-    getPlacesTrucks(vendorId).then((data) => setTruckData(data));
+    getPlacesTrucks(vendorId).then((res) => setTruckData(res.data));
     console.log(truckData.data.result);
+    setLoading(false);
   }, [vendorId]);
-  const data = truckData.data.result;
+  // const data = truckData.data.result;
 
   // useEffect(() => {
   // console.log(vendorId);
@@ -52,6 +67,13 @@ export default function TruckCard({ vendorId }) {
     submitReview({ rating, reviewText, vendorId });
   };
 
+  if (isLoading) {
+    return (
+      <div>
+        <h3>Loading...</h3>
+      </div>
+    );
+  }
   return (
     <div className="TruckCard">
       <Container className="Container" maxWidth="sm">
@@ -64,7 +86,7 @@ export default function TruckCard({ vendorId }) {
             ></img>
           </Grid>
           <Grid item xs={9} spacing={3}>
-            <h2>{truckData.data.result.name} </h2>
+            {/* <h2>{truckData.data.result.name} </h2> */}
             <hr />
           </Grid>
           <Grid item xs={3} spacing={3}>
@@ -73,29 +95,29 @@ export default function TruckCard({ vendorId }) {
             </Button> */}
           </Grid>
           <Grid item xs={12} spacing={3}>
-            <strong>Location:</strong> {truckData.data.result.formatted_address}{" "}
+            {/* <strong>Location:</strong> {truckData.data.result.formatted_address}{" "} */}
             <br />
             <br />
             <strong>Website:</strong>{" "}
-            <a href={truckData.data.result.website} target="_blank">
+            {/* <a href={truckData.data.result.website} target="_blank">
               {truckData.data.result.website}
-            </a>{" "}
+            </a>{" "} */}
             <br />
           </Grid>
           <Grid item xs={6} spacing={3}>
             <span className="left">
               {" "}
               <strong>Status:</strong>{" "}
-              {truckData.data.result.opening_hours.isOpen === true
+              {/* {truckData.data.result.opening_hours.isOpen === true
                 ? "Currently open"
-                : "Currently closed"}{" "}
+                : "Currently closed"}{" "} */}
               <br />
             </span>
           </Grid>
           <Grid item xs={6} spacing={3}>
             <span className="right">
               <strong>Global Rating:</strong>{" "}
-              <span className="rating">{truckData.data.result.rating}</span>/5
+              {/* <span className="rating">{truckData.data.result.rating}</span>/5 */}
             </span>
           </Grid>{" "}
           <Grid item xs={8} s={6} spacing={1}>
