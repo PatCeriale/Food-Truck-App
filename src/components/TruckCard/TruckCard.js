@@ -12,7 +12,7 @@ import { useState, useEffect } from "react";
 import { submitReview, getTruck, getPlacesTrucks } from "../../utils/Api";
 
 export default function TruckCard({ vendorId }) {
-  // const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(true);
   const [rating, setRating] = useState(0);
   const [reviewText, setReviewText] = useState("");
   const [truckData, setTruckData] = useState([]);
@@ -32,7 +32,7 @@ export default function TruckCard({ vendorId }) {
       // )
     );
     // console.log(truckData.result);
-    // setLoading(false);
+    setLoading(false);
   }, [vendorId]);
   // const data = truckData.data.result;
 
@@ -104,13 +104,13 @@ export default function TruckCard({ vendorId }) {
     submitReview({ rating, reviewText, vendorId });
   };
 
-  // if (isLoading) {
-  //   return (
-  //     <div>
-  //       <h3>Loading...</h3>
-  //     </div>
-  //   );
-  // }
+  if (isLoading || !truckData) {
+    return (
+      <div>
+        <h3>Loading...</h3>
+      </div>
+    );
+  }
   return (
     <div className="TruckCard">
       <Container className="Container" maxWidth="sm">
@@ -123,7 +123,7 @@ export default function TruckCard({ vendorId }) {
             ></img>
           </Grid>
           <Grid item xs={9} spacing={3}>
-            {/* <h2>{truckData.result.name} </h2> */}
+            <h2>{truckData.result.name} </h2>
             <hr />
           </Grid>
           <Grid item xs={3} spacing={3}>
