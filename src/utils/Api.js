@@ -18,11 +18,14 @@ export const getGeolocation = function (location) {
   );
 };
 
+
+
 const API = {
   createNewUSer: function (userData) {
     return axios.post("http://localhost:5000/newuser", userData);
   },
 };
+
 
 // export default API
 
@@ -41,24 +44,38 @@ const baseURL =
 // };
 // 6bbe75058e694349c9a0bd5aa79d24dfd14ec15d
 
+const baseURL =
+  // process.env.REACT_APP_API_URL ||
+  // "http://localhost:5000" ||
+  "https://truckntastyfood-backend.herokuapp.com/";
+
+
 export const createNewUser = function (userData) {
   return axios.post(`${baseURL}signup`, userData);
 };
 
 export const signInUser = function (userData) {
   return axios.post(`${baseURL}signin`, userData);
+
 };
 
 export const myUserAccount = function (userData) {
   return axios.get(`${baseURL}oneuser`);
+
+
 };
 
 export const submitReview = function (reviewData) {
   return axios.post(`${baseURL}newreview`, reviewData);
 };
 
+
 export const currentUserData = function (token) {
   return axios.post(`${baseURL}userdata`, token);
+
+export const createSignIn = function (userData) {
+  return axios.post(`${baseURL}signin`, userData);
+
 };
 // export const createSignIn = function (userData) {
 //   return axios.post("http://localhost:3000/signin", userData);

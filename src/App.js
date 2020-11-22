@@ -7,7 +7,9 @@ import Home from "./pages/Home/Home";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
 import User from "./pages/User/User";
+
 // import Location from "./pages/Location/Location";
+
 import Search from "./pages/Search/Search";
 import Truck from "./pages/Truck/Truck";
 // import "./app.css";
@@ -34,12 +36,13 @@ function App() {
           <Route exact path="/search">
             <Search />
           </Route>
-          <Route exact path="/truck">
+          <Route path={["/truck"]}>
             <Truck />
           </Route>
         </Switch>
+        <Footer className="footer-container" />
       </div>
-      <Footer className="footer-container" />
+      {/* <Footer className="footer-container" /> */}
     </Router>
   );
 }

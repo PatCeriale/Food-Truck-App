@@ -1,5 +1,9 @@
+
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+
+import React, { useState } from "react";
+
 import { makeStyles } from "@material-ui/core/styles";
 
 // import {Container, ButtonGroup, Button, Grid, TextareaAutosize, Paper} from "@material-ui/core";
@@ -32,6 +36,7 @@ export default function Home() {
   const location = useLocation();
   const classes = useStyles();
   const [foodTrucks, setFoodTrucks] = useState([]);
+
 
   useEffect(() => {
     if (location.pathname === "/logout") {
