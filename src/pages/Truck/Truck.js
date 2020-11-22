@@ -15,7 +15,47 @@ export default function Truck() {
   //   useEffect(() => {
   const location = useLocation();
   const vendorId = new URLSearchParams(location.search).get("id");
-  console.log(vendorId);
+
+  // useEffect(() => {
+  //   if (!vendorId) return;
+  //   const handle = setTimeout(async () => {
+  //     const res = await getPlacesTrucks(vendorId);
+  //     if (res.statusText !== "OK") {
+  //       console.error("failed to get search results");
+  //       return;
+  //     }
+  //     setTruckData(() =>
+  //       res.data.result
+  //         //only open food trucks
+  //         // .filter(({ business_status }) => business_status === "OPERATIONAL")
+  //         // .filter(({ name }) => name !== "Seattle Food Truck .com")
+  //         .map(
+  //           ({
+  //             name,
+  //             rating, // formatted_address: address,
+  //             vicinity: address,
+  //             place_id: googleId,
+  //             opening_hours,
+  //             website,
+  //           }) => ({
+  //             googleId,
+  //             name,
+  //             rating,
+  //             address,
+  //             website,
+  //             isOpen: !!opening_hours?.open_now,
+  //           })
+  //         )
+  //     );
+  //   }, 1);
+  //   return () => clearTimeout(handle);
+  // }, [truckData]);
+
+  // useEffect(() => {
+  //   console.log(truckData);
+  // }, [truckData]);
+
+  // console.log(vendorId);
 
   // async ( await ()=>{
   // setTruckData(getTruck(vendorId));
@@ -55,6 +95,7 @@ export default function Truck() {
         vendorId={new URLSearchParams(location.search).get("id")}
         // userId="abcd"
       />
+      {/* <h1>{truckData.data}</h1> */}
       <Review />
       <Review />
     </div>
