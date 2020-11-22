@@ -15,11 +15,19 @@ export default function TruckCard({ vendorId }) {
   const [rating, setRating] = useState(0);
   const [reviewText, setReviewText] = useState("");
   const [truckData, setTruckData] = useState([]);
+
+  useEffect(() => {
+    console.log(vendorId);
+    getPlacesTrucks(vendorId).then((data) => setTruckData(data));
+    console.log(truckData.data.result);
+    // const data = truckData.data.result;
+  }, [vendorId]);
+
   // useEffect(() => {
   // console.log(vendorId);
   // const res = getPlacesTrucks(vendorId);
   // console.log(res);
-  // const res = async () =>{}
+  // const res = async () => {};
   // setTruckData(
   //   async () =>
   //     await getTruck(vendorId).then((res) => {
@@ -31,7 +39,7 @@ export default function TruckCard({ vendorId }) {
   //   await getTruck(vendorId).then((res) => {
   //     console.log(res);
   //     return res;
-  //   });
+  // });
   // setTruckData(() => res);
   // // },
   // [truckData]);
@@ -56,7 +64,7 @@ export default function TruckCard({ vendorId }) {
             ></img>
           </Grid>
           <Grid item xs={9} spacing={3}>
-            <h2>Truck Name </h2>
+            <h2>{truckData.data.result.name} </h2>
             <hr />
           </Grid>
           <Grid item xs={3} spacing={3}>
@@ -65,15 +73,28 @@ export default function TruckCard({ vendorId }) {
             </Button> */}
           </Grid>
           <Grid item xs={12} spacing={3}>
-            Location: <br />
+            Location: {truckData.data.result.formatted_address} <br />
             <br />
-            Name's Website: <br />
+            Website:{" "}
+            <a href={truckData.data.result.website} target="_blank">
+              {truckData.data.result.website}
+            </a>{" "}
+            <br />
           </Grid>
           <Grid item xs={6} spacing={3}>
-            <span className="left">Is open?</span>
+            <span className="left">
+              {" "}
+              Status:{" "}
+              {truckData.data.result.opening_hours.isOpen === true
+                ? "Currently open"
+                : "Currently closed"}{" "}
+              <br />
+            </span>
           </Grid>
           <Grid item xs={6} spacing={3}>
-            <span className="right">Global Rating: rating/5</span>
+            <span className="right">
+              Global Rating: <strong>{truckData.data.result.rating}</strong>/5
+            </span>
           </Grid>{" "}
           <Grid item xs={8} s={6} spacing={1}>
             <form onSubmit={handleSubmit}>
