@@ -9,13 +9,14 @@ import {
 } from "@material-ui/core";
 import "./TruckCard.css";
 import { useState, useEffect } from "react";
-import { submitReview, getTruck } from "../../utils/Api";
+import { submitReview, getTruck, getPlacesTrucks } from "../../utils/Api";
 
 export default function TruckCard({ vendorId }) {
   const [rating, setRating] = useState(0);
   const [reviewText, setReviewText] = useState("");
   console.log(vendorId);
-
+  const res = getPlacesTrucks(vendorId);
+  console.log(res);
   // (getTruck(vendorId).then((res) => console.log(res)));
 
   const handleSubmit = (e) => {
@@ -32,7 +33,7 @@ export default function TruckCard({ vendorId }) {
         <Grid container spacing={4}>
           <Grid item xs={12} spacing={12}>
             <img
-              src="https://cbs6albany.com/resources/media/ef9010e4-ff57-4b7b-9ee9-7482bfad3a84-large16x9_foodtrucks.PNG?1587351056666"
+              src="https://64.media.tumblr.com/b343649189ed67f4b386539103f2b348/a34b696191849ea9-53/s540x810/4689ce9ad6173167269440f4314327be9f0f47db.png"
               alt="Food Truck"
               className="foodTruckImage"
             ></img>
@@ -42,9 +43,9 @@ export default function TruckCard({ vendorId }) {
             <hr />
           </Grid>
           <Grid item xs={3} spacing={3}>
-            <Button variant="contained" color="primary">
+            {/* <Button variant="contained" color="primary">
               Favorite
-            </Button>
+            </Button> */}
           </Grid>
           <Grid item xs={12} spacing={3}>
             Location: <br />
