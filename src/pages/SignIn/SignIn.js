@@ -80,15 +80,19 @@ export default function SignIn() {
     signInUser(mystate)
       .then((res) => {
         console.log(res);
+        localStorage.setItem("token", res.data.token);
         history.push("/user");
       })
-      .catch((error) => console.log("user login failed:", error));
+      .catch((error) => {
+        console.log("user login failed:", error);
+        alert("wrong username or password");
+      });
 
-    createSignIn(mystate)
-      .then((res) => {
-        console.log("user found,", res);
-      })
-      .catch((error) => console.log("email password does not exist", error));
+    // createSignIn(mystate)
+    //   .then((res) => {
+    //     console.log("user found,", res);
+    //   })
+    //   .catch((error) => console.log("email password does not exist", error));
   };
 
   return (
@@ -138,8 +142,8 @@ export default function SignIn() {
             onChange={handleInputChange}
             autoComplete="current-password"
             // autoComplete="current-password"
-            onChange={handleInputChange}
-            value={mystate.password}
+            // onChange={handleInputChange}
+            // value={mystate.password}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -151,7 +155,7 @@ export default function SignIn() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={handleSubmitClick}
+            onClick={handleFormSubmit}
           >
             Sign In
           </Button>

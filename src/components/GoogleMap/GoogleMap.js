@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
+import { Map, Marker, GoogleApiWrapper, InfoWindow } from "google-maps-react";
+
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from "react-places-autocomplete";
 import "./GoogleMap.css";
-// import { getTrucks } from "../../utils/Api";
-import { Height } from "@material-ui/icons";
+import { getGeolocation, getTrucks } from "../../utils/Api";
 
 //note: code formatted for ES6 here
 export class MapContainer extends Component {
@@ -27,14 +27,34 @@ export class MapContainer extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   getTrucks().then((res) => console.table(res));
-  // }
-
   handleChange = (address) => {
     this.setState({ address });
   };
 
+  onMarkerClick = (props, marker, e) =>
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true,
+    });
+
+  onClose = (props) => {
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null,
+      });
+    }
+  };
+
+  onMapClicked = (props) => {
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null,
+      });
+    }
+  };
   handleSelect = (address) => {
     geocodeByAddress(address)
       .then((results) => getLatLng(results[0]))
@@ -43,11 +63,38 @@ export class MapContainer extends Component {
         // api call for food truck
         this.setState({ address });
         this.setState({ mapCenter: latLng });
+        getGeolocation(address).then((data) => {
+          console.log(data);
+          var location =
+            data.data.results[0].geometry.location.lat +
+            "," +
+            data.data.results[0].geometry.location.lng;
 
-        console.log({address})
+          console.log("======================================");
+          console.log(address);
+          console.log(location);
+          console.log("======================================");
+          getTrucks(location).then((res) => {
+            console.log("======================================");
+            console.log(res);
+            console.log("======================================");
+            const results = res.data.results.map((r) => ({
+              name: r.name,
+              icon2: r.icon,
+              status: r.business_status,
+              place: r.place_id,
+              lat: r.geometry.location.lat,
+              lng: r.geometry.location.lng,
+            }));
+
+            this.setState({ foodTrucks: results });
+            this.props.setFoodTrucks(results);
+          });
+        });
+
+        console.log({ address });
 
         // axios request for pins
-
       })
       .catch((error) => console.error("Error", error));
   };
@@ -59,7 +106,7 @@ export class MapContainer extends Component {
       "margin-left": "auto",
       "margin-right": "auto",
       "margin-top": "10px",
-      "z-index": "-1",
+      // "z-index": "-1",
       position: "absolute",
     };
     return (
@@ -120,13 +167,35 @@ export class MapContainer extends Component {
             lng: this.state.mapCenter.lng,
           }}
           onClick={this.onMapClicked}
+          zoom={14}
         >
           <Marker
             position={{
               lat: this.state.mapCenter.lat,
               lng: this.state.mapCenter.lng,
             }}
+            onClick={this.onMarkerClick}
           />
+          {this.state.foodTrucks.map((foodTruck) => {
+            console.log(foodTruck);
+            return (
+              <Marker
+                position={{
+                  lat: foodTruck.lat,
+                  lng: foodTruck.lng,
+                }}
+              />
+            );
+          })}
+          <InfoWindow
+            marker={this.state.activeMarker}
+            visible={this.state.showingInfoWindow}
+            onClose={this.onClose}
+          >
+            <div>
+              <h4>{this.state.selectedPlace.name}</h4>
+            </div>
+          </InfoWindow>
         </Map>
       </div>
     );
