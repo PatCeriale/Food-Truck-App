@@ -8,26 +8,28 @@ import {
   ListItem,
   ListItemText,
   Hidden,
-  CardMedia,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core";
-import { Home } from "@material-ui/icons";
 import SideDrawer from "./SideDrawer";
 import Logo from "./TruckNTasty.png";
+import "./nav.css"
 
 const useStyles = makeStyles({
   navbarDisplayFlex: {
     display: `flex`,
     justifyContent: `space-between`,
+    background: `oldlace`
   },
   navDisplayFlex: {
     display: `flex`,
     justifyContent: `space-between`,
+    background: `oldlace`
   },
   linkText: {
     textDecoration: `none`,
     textTransform: `uppercase`,
-    color: `white`,
+    color: `black`,
+
   },
 });
 
@@ -47,12 +49,7 @@ const Header = () => {
     <AppBar position="static">
       <Toolbar>
         <Container maxWidth="xl" className={classes.navbarDisplayFlex}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="home"
-            path="/home"
-          >
+          <IconButton edge="start" color="inherit" aria-label="home" href="/">
             <img src={Logo} style={{ height: "150px", width: "150px" }} />
           </IconButton>
           <Hidden smDown>

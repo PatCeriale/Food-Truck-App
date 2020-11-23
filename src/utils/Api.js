@@ -1,10 +1,5 @@
 import axios from "axios";
 
-<<<<<<< HEAD
-// eslint-disable-next-line no-unused-vars
-
-=======
->>>>>>> eceb42ce46fa40a0c6a2bd421899308424e7d08a
 export const getTrucks = function (location) {
   return axios.get(
     `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=1500&type=restaurant&keyword=food%20truck&key=AIzaSyDuPsN0ojCj-Ii8azSMi47no7xGpJZ7d20`
@@ -35,7 +30,10 @@ export const getGeolocation = function (location) {
 
 const API = {
   createNewUSer: function (userData) {
-    return axios.post("http://localhost:5000/newuser", userData);
+    return axios.post(
+      "https://truckntastyfood-backend.herokuapp.com/newuser",
+      userData
+    );
   },
 };
 
@@ -46,10 +44,14 @@ const baseURL =
 
 // Uncomment for local
 // const baseURL = "http://localhost:5000/";
+<<<<<<< HEAD
 // const baseURL =
 // process.env.REACT_APP_API_URL ||
 // "http://localhost:5000" ||
 // "https://truckntastyfood-backend.herokuapp.com/";
+=======
+
+>>>>>>> dev
 
 export const createNewUser = function (userData) {
   return axios.post(`${baseURL}signup`, userData);
