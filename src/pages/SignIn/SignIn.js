@@ -79,7 +79,7 @@ export default function SignIn() {
 
     signInUser(mystate)
       .then((res) => {
-        console.log(res);
+        console.log("Login succeeded", res);
         localStorage.setItem("token", res.data.token);
         history.push("/user");
       })
