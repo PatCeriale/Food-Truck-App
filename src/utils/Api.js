@@ -30,7 +30,10 @@ export const getGeolocation = function (location) {
 
 const API = {
   createNewUSer: function (userData) {
-    return axios.post("http://localhost:5000/newuser", userData);
+    return axios.post(
+      "https://truckntastyfood-backend.herokuapp.com/newuser",
+      userData
+    );
   },
 };
 
@@ -41,7 +44,14 @@ const baseURL =
 
 // Uncomment for local
 // const baseURL = "http://localhost:5000/";
+<<<<<<< HEAD
+// const baseURL =
+// process.env.REACT_APP_API_URL ||
+// "http://localhost:5000" ||
+// "https://truckntastyfood-backend.herokuapp.com/";
+=======
 
+>>>>>>> dev
 
 export const createNewUser = function (userData) {
   return axios.post(`${baseURL}signup`, userData);
