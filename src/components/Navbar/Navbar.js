@@ -47,12 +47,7 @@ const Header = () => {
     <AppBar position="static">
       <Toolbar>
         <Container maxWidth="xl" className={classes.navbarDisplayFlex}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="home"
-            path="/home"
-          >
+          <IconButton edge="start" color="inherit" aria-label="home" href="/">
             <img src={Logo} style={{ height: "150px", width: "150px" }} />
           </IconButton>
           <Hidden smDown>

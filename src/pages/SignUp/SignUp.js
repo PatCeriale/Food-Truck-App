@@ -107,9 +107,14 @@ export default function SignUp() {
     createNewUser(mystate)
       .then((res) => {
         console.log(res);
+        localStorage.setItem("token", res.data.token);
         history.push("/user");
       })
-      .catch((error) => console.log("user registration failed:", error));
+      // add an alert to let user know their signup didn't work
+      .catch((error) => {
+        alert("user registration failed, try again", error);
+        // console.log("user registration failed:", error);
+      });
   };
 
   //handleFormSubmit
