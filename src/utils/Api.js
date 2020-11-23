@@ -5,7 +5,17 @@ export const getTrucks = function (location) {
     `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=1500&type=restaurant&keyword=food%20truck&key=AIzaSyDuPsN0ojCj-Ii8azSMi47no7xGpJZ7d20`
   );
 };
-
+export const getPlaceTrucks = function (lat, lng) {
+  return axios.get(
+    `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=1500&type=restaurant&keyword=food%20truck&key=AIzaSyDuPsN0ojCj-Ii8azSMi47no7xGpJZ7d20`
+  );
+};
+export const getPlacesTrucks = function (place_id) {
+  return axios.get(
+    `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id=${place_id}&radius=1500&type=restaurant&keyword=food%20truck&key=AIzaSyDuPsN0ojCj-Ii8azSMi47no7xGpJZ7d20&`
+  );
+};
+// place_id=${lat},${lng}
 export const getTruck = function (googleId) {
   return axios.get(
     `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${googleId}&radius=1500&type=restaurant&keyword=food%20truck&key=AIzaSyDuPsN0ojCj-Ii8azSMi47no7xGpJZ7d20`
@@ -24,27 +34,29 @@ const API = {
   },
 };
 
-// export default API
-
-// axios.baseURL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+// Uncomment for deployed
 // const baseURL =
-//   "http://localhost:5000/" || "https://truckntastyfood-backend.herokuapp.com/";
-// const API = {
-// 6bbe75058e694349c9a0bd5aa79d24dfd14ec15d
+//   // process.env.REACT_APP_API_URL ||
+//   // "http://localhost:5000" ||
+//   "https://truckntastyfood-backend.herokuapp.com/";
 
-// export default API
-//  6bbe75058e694349c9a0bd5aa79d24dfd14ec15d
-// export const getTrucks = function () {
-//   return axios.get(
-//     "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=47.6062,-122.3321&radius=1500&type=restaurant&keyword=food%20truck&key=AIzaSyDuPsN0ojCj-Ii8azSMi47no7xGpJZ7d20"
-//   );
+// export const createNewUser = function (userData) {
+//   return axios.post(`${baseURL}signup`, userData);
 // };
-// 6bbe75058e694349c9a0bd5aa79d24dfd14ec15d
+// export const signInUser = function (userData) {
+//   return axios.post(`${baseURL}signin`, userData);
+// };
 
-const baseURL =
-  // process.env.REACT_APP_API_URL ||
-  "http://localhost:5000";
-// "https://truckntastyfood-backend.herokuapp.com/";
+// export const submitReview = function (reviewData) {
+//   return axios.post(`${baseURL}newreview`, reviewData);
+// };
+
+// export const createSignIn = function (userData) {
+//   return axios.post(`${baseURL}signin`, userData);
+// };
+
+// Uncomment for local
+const baseURL = "http://localhost:5000/";
 
 export const createNewUser = function (userData) {
   return axios.post(`${baseURL}signup`, userData);

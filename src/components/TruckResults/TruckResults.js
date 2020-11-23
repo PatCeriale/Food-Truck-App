@@ -8,20 +8,24 @@ export default function TruckResults({
   rating,
   address,
   isOpen,
+  website,
 }) {
   return (
-    <Container container spacing={6} className="TruckResults">
-      <h3>{name}</h3>
-      <Grid item xs={12}>
-        {/* <img src="#" /> */}
-        Truck Location: {address}
+    <Grid item xs={12} sm={6} md={4} lg={3} spacing={2}>
+      <div className="TruckResults">
+        <h3>{name}</h3>
+        <hr />
         <br />
-        Website: <br />
-        Is open: {isOpen} <br />
-        Rating: {rating}
+        {/* <img src="#" /> */}
+        Location: {address}
+        <br />
+        Website: <a href="{website}" target="_blank" /> {website} <br />
+        Status: {isOpen === true ? "Currently open" : "Currently closed"} <br />
+        Rating: <strong>{rating}</strong> / 5
         <br />
         <Link to={"/truck?id=" + googleId}>more info...</Link>
-      </Grid>
-    </Container>
+      </div>
+    </Grid>
+    // </Container>
   );
 }

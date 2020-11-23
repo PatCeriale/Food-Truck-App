@@ -1,12 +1,13 @@
 import TruckResults from "../../components/TruckResults/TruckResults";
 import "./Search.css";
-import { getTrucks } from "../../utils/Api";
+import { getPlaceTrucks, getPlacesTrucks } from "../../utils/Api";
 import { useEffect, useState } from "react";
 import PlacesAutoComplete, {
   geocodeByAddress,
   getLatLng,
 } from "react-places-autocomplete";
 import { LocationOn } from "@material-ui/icons";
+import { Container, Grid } from "@material-ui/core";
 
 export default function Search() {
   const [address, setAddress] = useState("");
@@ -22,33 +23,59 @@ export default function Search() {
     const handle = setTimeout(async () => {
       const geoCodes = await geocodeByAddress(address);
       const coords = await getLatLng(geoCodes[0]);
-      console.log(coords);
-      const res = await getTrucks(coords.lat, coords.lng);
+      const res = await getPlaceTrucks(coords.lat, coords.lng);
+      console.log("++++++++++++++++++++++++", res, "++++++++++++++++++++++++");
+
+      // const res2 = await getPlacesTrucks(res.data.results[0].place_id);
+      // for (let i = 0; i < res2.length; i++) {}
       if (res.statusText !== "OK") {
         console.error("failed to get search results");
         return;
       }
-      console.log(res);
+      // console.log("======================", res2, "======================");
       setTrucks(() =>
         res.data.results
           //only open food trucks
           .filter(({ business_status }) => business_status === "OPERATIONAL")
+          .filter(({ name }) => name !== "Seattle Food Truck .com")
           .map(
             ({
               name,
-              rating,
+              rating, // formatted_address: address,
               vicinity: address,
               place_id: googleId,
               opening_hours,
+              website,
             }) => ({
               googleId,
               name,
               rating,
               address,
+              website,
               isOpen: !!opening_hours?.open_now,
             })
           )
       );
+      // setTrucks(() =>
+      //   res.data.results
+      //     //only open food trucks
+      //     .filter(({ business_status }) => business_status === "OPERATIONAL")
+      //     .map(
+      //       ({
+      //         name,
+      //         rating,
+      //         vicinity: address,
+      //         place_id: googleId,
+      //         opening_hours,
+      //       }) => ({
+      //         googleId,
+      //         name,
+      //         rating,
+      //         address,
+      //         isOpen: !!opening_hours?.open_now,
+      //       })
+      //     )
+      // );
     }, 1000);
     return () => clearTimeout(handle);
   }, [address]);
@@ -56,7 +83,7 @@ export default function Search() {
   //if (loading) { return <p>Loading...</p> }
   // if (error) { return <p>Error</p> }
   return (
-    <div>
+    <div className="Search">
       {/* <PlacesAutocomplete /> */}
       <h1>Search Trucks</h1>
       <PlacesAutoComplete
@@ -92,9 +119,13 @@ export default function Search() {
           </div>
         )}
       </PlacesAutoComplete>{" "}
-      {trucks?.map((truck, i) => (
-        <TruckResults key={i} {...truck} />
-      ))}
+      <Container>
+        <Grid container spacing={1}>
+          {trucks?.map((truck, i) => (
+            <TruckResults key={i} {...truck} />
+          ))}
+        </Grid>
+      </Container>
     </div>
   );
 }
