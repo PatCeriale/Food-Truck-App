@@ -41,6 +41,10 @@ const baseURL =
 
 // Uncomment for local
 // const baseURL = "http://localhost:5000/";
+const baseURL =
+  // process.env.REACT_APP_API_URL ||
+  // "http://localhost:5000" ||
+  // "https://truckntastyfood-backend.herokuapp.com/";
 
 export const createNewUser = function (userData) {
   return axios.post(`${baseURL}signup`, userData);
