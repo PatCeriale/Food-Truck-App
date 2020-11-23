@@ -22,12 +22,29 @@ export default function Review({ vendorId }) {
 
   useEffect(() => {
     if (!vendorId) return;
-    // console.log(vendorId);
-    getPlacesTrucks(vendorId).then((res) =>
-      setReviewData(res.data.result.reviews)
-    );
+    const res = getPlacesTrucks(vendorId);
+    // .then((res) =>
+    setReviewData(res.data.result.reviews.map());
+    // ({ author_name, rating, text, relative_time_description }) => ({
+    //   author_name,
+    //   rating,
+    //   text,
+    //   relative_time_description,
+    // })
+    // );
     // setLoading(false);
   }, [vendorId]);
+
+  ////////////////////////////////////////////////////////
+  // useEffect(() => {
+  //   if (!vendorId) return;
+  //   // console.log(vendorId);
+  //   getPlacesTrucks(vendorId).then((res) =>
+  //     setReviewData(res.data.result.reviews)
+  //   );
+  //   // setLoading(false);
+  // }, [vendorId]);
+  /////////////////////////////////////////////////////////
 
   useEffect(() => {
     console.log(reviewData, "----------------------");
@@ -37,19 +54,19 @@ export default function Review({ vendorId }) {
     <Container className="Container" maxWidth="sm">
       <Grid container spacing={4}>
         <Grid item xs={6} spacing={6}>
-          <h3>{reviewData[0]?.author_name}</h3>
+          <h3>{reviewData?.author_name}</h3>
           <br />
-          {reviewData[0]?.relative_time_description}
+          {/* {reviewData[0]?.relative_time_description} */}
         </Grid>
         <Grid item xs={6} spacing={6} className="rating-stars">
-          User Rating: {reviewData[0]?.rating}{" "}
+          {/* User Rating: {reviewData[0]?.rating}{" "} */}
           {/* for loop with length of stars given? */}
           <i class="far fa-star"></i>
         </Grid>{" "}
         <Grid item xs={12} spacing={12}>
           <hr />
           <br />
-          <p>{reviewData[0]?.text}</p>
+          {/* <p>{reviewData[0]?.text}</p> */}
         </Grid>
       </Grid>
     </Container>
