@@ -5,7 +5,6 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from "react-places-autocomplete";
-import "./GoogleMap.css";
 import { getGeolocation, getTrucks } from "../../utils/Api";
 
 //note: code formatted for ES6 here
@@ -154,7 +153,6 @@ export class MapContainer extends Component {
             </div>
           )}
         </PlacesAutocomplete>
-        <input type="text" />
 
         <Map
           style={mapStyle}
@@ -175,6 +173,10 @@ export class MapContainer extends Component {
               lat: this.state.mapCenter.lat,
               lng: this.state.mapCenter.lng,
             }}
+            icon={{
+              url: "/TruckNTastyPin.svg",
+              scaledSize: new window.google.maps.Size(100, 100),
+            }}
           />
           {this.state.foodTrucks.map((foodTruck) => {
             console.log(foodTruck);
@@ -183,6 +185,10 @@ export class MapContainer extends Component {
                 position={{
                   lat: foodTruck.lat,
                   lng: foodTruck.lng,
+                }}
+                icon={{
+                  url: "/TruckNTastyPin.svg",
+                  scaledSize: new window.google.maps.Size(100, 100),
                 }}
                 onClick={this.onMarkerClick}
               />
@@ -197,10 +203,7 @@ export class MapContainer extends Component {
               this.state.foodTrucks.map((f) => (
                 <div>
                   <p>{f.name}</p>
-                  <img src={f.icon2}></img>
                   <p>{f.status}</p>
-                  <p>{f.place}</p>
-                  <p>{f.lat}</p>
                   <p></p>
                 </div>
               ))}
