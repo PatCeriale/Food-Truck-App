@@ -13,6 +13,7 @@ import { useState } from "react";
 const useStyles = makeStyles({
   list: {
     width: 250,
+    
   },
   linkText: {
     textDecoration: `none`,

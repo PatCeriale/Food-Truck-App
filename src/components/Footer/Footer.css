@@ -9,7 +9,19 @@
   bottom: 0;
   left: 0;
   width: 100%;
+  
 }
 .nothing {
   background-color: salmon;
 }
+
+.text{
+  background: white;
+  /* width:400px;
+  text-align: center; */
+  margin-left: 350px;
+  margin-right: 350px;
+
+  
+
+} 
