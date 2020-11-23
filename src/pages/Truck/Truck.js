@@ -95,8 +95,6 @@ export default function Truck() {
         vendorId={new URLSearchParams(location.search).get("id")}
         // userId="abcd"
       />
-      {/* <h1>{truckData.data}</h1> */}
-
       <Review vendorId={new URLSearchParams(location.search).get("id")} />
     </div>
   );
