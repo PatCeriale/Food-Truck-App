@@ -1,20 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-
-// import {Container, ButtonGroup, Button, Grid, TextareaAutosize, Paper} from "@material-ui/core";
-// import Gmap from "../../components/GMap/GMap";
-
-// import Paper from "@material-ui/core/Paper";
-// import Grid from "@material-ui/core/Grid";
-
-import { Grid, Paper } from "@material-ui/core";
-// import Gmap from "../../components/GMap/GMap";
-// import Paper from "@material-ui/core/Paper";
-// import Grid from "@material-ui/core/Grid";
-
+import { Grid, Paper, Card, CardContent } from "@material-ui/core";
 import "./Home.css";
 import GoogleMap from "../../components/GoogleMap/GoogleMap";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,9 +18,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 export default function Home() {
   const location = useLocation();
-  const classes = useStyles();
+   const classes = useStyles();
   const [foodTrucks, setFoodTrucks] = useState([]);
 
   useEffect(() => {
@@ -40,24 +31,34 @@ export default function Home() {
   }, []);
 
   return (
+    <>
     <div>
       <GoogleMap setFoodTrucks={setFoodTrucks} />
-
-      <div>
+      </div>
         <Grid container spacing={6} className="grid">
+        {foodTrucks ? ( 
+          <Grid item xs={12} sm={4}>
+           
+            <Card>
+              <CardContent>
           {foodTrucks.length &&
             foodTrucks.map((f) => (
               <div>
-                {/* <p>{f.name}</p> */}
-                {/* <img src={f.icon2}></img> */}
-                {/* <p>{f.status}</p>
-                <p>{f.place}</p>
-                <p>{f.lat}</p> */}
-                {/* <p></p> */}
-              </div>
+                <p>{f.name}</p>
+                <img src={f.icon2}></img>
+                <p>{f.status}</p>
+                 {/* <p>{f.place}</p> 
+                 <p>{f.lat}</p>   */}
+                 
+                </div>
             ))}
-        </Grid>
-      </div>
-    </div>
+            </CardContent>
+            </Card>
+            </Grid>
+            ): <div></div>}
+              
+        </Grid> 
+      </>
+  
   );
 }
