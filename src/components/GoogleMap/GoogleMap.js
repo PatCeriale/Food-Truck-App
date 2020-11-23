@@ -173,10 +173,10 @@ export class MapContainer extends Component {
               lat: this.state.mapCenter.lat,
               lng: this.state.mapCenter.lng,
             }}
-            icon={{
-              url: "/TruckNTastyPin.svg",
-              scaledSize: new window.google.maps.Size(100, 100),
-            }}
+            // icon={{
+            //   url: "/TruckNTastyPin.svg",
+            //   scaledSize: new window.google.maps.Size(100, 100),
+            // }}
           />
           {this.state.foodTrucks.map((foodTruck) => {
             console.log(foodTruck);

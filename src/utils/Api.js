@@ -30,7 +30,10 @@ export const getGeolocation = function (location) {
 
 const API = {
   createNewUSer: function (userData) {
-    return axios.post("http://localhost:5000/newuser", userData);
+    return axios.post(
+      "https://truckntastyfood-backend.herokuapp.com/newuser",
+      userData
+    );
   },
 };
 
