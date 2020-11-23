@@ -1,5 +1,5 @@
 .foodTruckImage {
-  height: 25vh;
+  height: 40vh;
   width: 40vh;
   display: block;
   margin-left: auto;
@@ -13,7 +13,12 @@
   border-style: solid;
   border-color: black;
   border-width: 1px;
+  background-color: white;
 }
 .textArea {
   width: 100%;
+}
+.rating {
+  color: red;
+  font-size: large;
 }
