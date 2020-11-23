@@ -35,28 +35,12 @@ const API = {
 };
 
 // Uncomment for deployed
-// const baseURL =
+const baseURL = "https://truckntastyfood-backend.herokuapp.com/";
 //   // process.env.REACT_APP_API_URL ||
 //   // "http://localhost:5000" ||
-//   "https://truckntastyfood-backend.herokuapp.com/";
-
-// export const createNewUser = function (userData) {
-//   return axios.post(`${baseURL}signup`, userData);
-// };
-// export const signInUser = function (userData) {
-//   return axios.post(`${baseURL}signin`, userData);
-// };
-
-// export const submitReview = function (reviewData) {
-//   return axios.post(`${baseURL}newreview`, reviewData);
-// };
-
-// export const createSignIn = function (userData) {
-//   return axios.post(`${baseURL}signin`, userData);
-// };
 
 // Uncomment for local
-const baseURL = "http://localhost:5000/";
+// const baseURL = "http://localhost:5000/";
 
 export const createNewUser = function (userData) {
   return axios.post(`${baseURL}signup`, userData);
