@@ -12,24 +12,23 @@ import {
 import { makeStyles } from "@material-ui/core";
 import SideDrawer from "./SideDrawer";
 import Logo from "./TruckNTasty.png";
-import "./nav.css"
+import "./nav.css";
 
 const useStyles = makeStyles({
   navbarDisplayFlex: {
     display: `flex`,
     justifyContent: `space-between`,
-    background: `oldlace`
+    // background: `oldlace`,
   },
   navDisplayFlex: {
     display: `flex`,
     justifyContent: `space-between`,
-    background: `oldlace`
+    // background: `oldlace`
   },
   linkText: {
     textDecoration: `none`,
     textTransform: `uppercase`,
-    color: `black`,
-
+    color: `white`,
   },
 });
 
