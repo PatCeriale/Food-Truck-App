@@ -204,7 +204,6 @@ export class MapContainer extends Component {
                 <div>
                   <p>{f.name}</p>
                   <p>{f.status}</p>
-                  <p></p>
                 </div>
               ))}
           </InfoWindow>
