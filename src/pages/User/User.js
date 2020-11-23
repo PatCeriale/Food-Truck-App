@@ -70,9 +70,14 @@ export default function User() {
       </div>
       <Grid container spacing={6}>
         <Grid item xs={12}>
-          <Paper className={classes.paper}>xs=12</Paper>
+          <Paper className={classes.paper}>
+            <img
+              src="https://i1.wp.com/whiterivernow.com/wp-content/uploads/2018/12/Under-Construction-Sign.png?fit=1230%2C580&ssl=1"
+              className="construction"
+            />
+          </Paper>
         </Grid>
-        <Grid item xs={6}>
+        {/* <Grid item xs={6}>
           <Paper className={classes.paper}>xs=6</Paper>
         </Grid>
         <Grid item xs={6}>
@@ -83,7 +88,7 @@ export default function User() {
         </Grid>
         <Grid item xs={6}>
           <Paper className={classes.paper}>xs=6</Paper>
-        </Grid>
+        </Grid> */}
       </Grid>
     </div>
   );

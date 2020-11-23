@@ -30,21 +30,24 @@ export const getGeolocation = function (location) {
 
 const API = {
   createNewUSer: function (userData) {
-    return axios.post("http://localhost:5000/newuser", userData);
+    return axios.post(
+      "https://truckntastyfood-backend.herokuapp.com/newuser",
+      userData
+    );
   },
 };
 
 // Uncomment for deployed
-const baseURL = "https://truckntastyfood-backend.herokuapp.com/";
-//   // process.env.REACT_APP_API_URL ||
-//   // "http://localhost:5000" ||
+const baseURL =
+  "https://truckntastyfood-backend.herokuapp.com/" ||
+  process.env.REACT_APP_API_URL;
 
 // Uncomment for local
 // const baseURL = "http://localhost:5000/";
-const baseURL =
-  // process.env.REACT_APP_API_URL ||
-  // "http://localhost:5000" ||
-  // "https://truckntastyfood-backend.herokuapp.com/";
+// const baseURL =
+// process.env.REACT_APP_API_URL ||
+// "http://localhost:5000" ||
+// "https://truckntastyfood-backend.herokuapp.com/";
 
 export const createNewUser = function (userData) {
   return axios.post(`${baseURL}signup`, userData);

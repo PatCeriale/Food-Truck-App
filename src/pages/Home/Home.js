@@ -1,18 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-
-// import {Container, ButtonGroup, Button, Grid, TextareaAutosize, Paper} from "@material-ui/core";
-// import Gmap from "../../components/GMap/GMap";
-
-// import Paper from "@material-ui/core/Paper";
-// import Grid from "@material-ui/core/Grid";
-
-import { Grid, Paper } from "@material-ui/core";
-// import Gmap from "../../components/GMap/GMap";
-// import Paper from "@material-ui/core/Paper";
-// import Grid from "@material-ui/core/Grid";
-
+import { Grid, Paper, Card, CardContent } from "@material-ui/core";
 import "./Home.css";
 import GoogleMap from "../../components/GoogleMap/GoogleMap";
 
@@ -40,24 +29,10 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
-      <GoogleMap setFoodTrucks={setFoodTrucks} />
-
+    <>
       <div>
-        <Grid container spacing={6} className="grid">
-          {foodTrucks.length &&
-            foodTrucks.map((f) => (
-              <div>
-                {/* <p>{f.name}</p> */}
-                {/* <img src={f.icon2}></img> */}
-                {/* <p>{f.status}</p>
-                <p>{f.place}</p>
-                <p>{f.lat}</p> */}
-                {/* <p></p> */}
-              </div>
-            ))}
-        </Grid>
+        <GoogleMap setFoodTrucks={setFoodTrucks} />
       </div>
-    </div>
+    </>
   );
 }

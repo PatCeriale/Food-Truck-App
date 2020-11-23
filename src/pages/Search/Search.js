@@ -93,7 +93,7 @@ export default function Search() {
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <div>
-            <input {...getInputProps({ placeholder: "search by city" })} />
+            <input className="input" {...getInputProps({ placeholder: "search by city" })} />
 
             <div>
               {loading ? <div>...loading</div> : null}
@@ -101,6 +101,7 @@ export default function Search() {
               {suggestions.map((suggestion, i) => {
                 const style = {
                   backgroundColor: suggestion.active ? "aqua" : "white",
+                  marginLeft: "25px"
                 };
                 return (
                   <div
@@ -111,7 +112,7 @@ export default function Search() {
                       { LocationOn }
                     )}
                   >
-                    ;{suggestion.description}
+                    {suggestion.description}
                   </div>
                 );
               })}

@@ -6,6 +6,7 @@ const style = {
   bottom: `50px`,
   right: `100px`,
   zIndex: `99`,
+  background: `oldlace`
 };
 
 const BackToTop = ({ children }) => {
