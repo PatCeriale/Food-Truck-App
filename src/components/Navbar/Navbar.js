@@ -8,26 +8,28 @@ import {
   ListItem,
   ListItemText,
   Hidden,
-  CardMedia,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core";
-import { Home } from "@material-ui/icons";
 import SideDrawer from "./SideDrawer";
 import Logo from "./TruckNTasty.png";
+import "./nav.css"
 
 const useStyles = makeStyles({
   navbarDisplayFlex: {
     display: `flex`,
     justifyContent: `space-between`,
+    background: `oldlace`
   },
   navDisplayFlex: {
     display: `flex`,
     justifyContent: `space-between`,
+    background: `oldlace`
   },
   linkText: {
     textDecoration: `none`,
     textTransform: `uppercase`,
-    color: `white`,
+    color: `black`,
+
   },
 });
 
