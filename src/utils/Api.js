@@ -27,6 +27,7 @@ export const getGeolocation = function (location) {
     `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=AIzaSyDuPsN0ojCj-Ii8azSMi47no7xGpJZ7d20`
   );
 };
+
 const API = {
   createNewUSer: function (userData) {
     return axios.post("http://localhost:5000/newuser", userData);
@@ -60,14 +61,25 @@ const baseURL = "http://localhost:5000/";
 export const createNewUser = function (userData) {
   return axios.post(`${baseURL}signup`, userData);
 };
+
 export const signInUser = function (userData) {
   return axios.post(`${baseURL}signin`, userData);
+};
+
+export const myUserAccount = function (userData) {
+  return axios.get(`${baseURL}oneuser`);
 };
 
 export const submitReview = function (reviewData) {
   return axios.post(`${baseURL}newreview`, reviewData);
 };
 
+export const currentUserData = function (token) {
+  return axios.post(`${baseURL}userdata`, token);
+};
 export const createSignIn = function (userData) {
   return axios.post(`${baseURL}signin`, userData);
 };
+// export const createSignIn = function (userData) {
+//   return axios.post("http://localhost:3000/signin", userData);
+// };
