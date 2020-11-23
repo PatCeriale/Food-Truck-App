@@ -5,7 +5,6 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from "react-places-autocomplete";
-import "./GoogleMap.css";
 import { getGeolocation, getTrucks } from "../../utils/Api";
 
 //note: code formatted for ES6 here
@@ -106,9 +105,13 @@ export class MapContainer extends Component {
       "margin-left": "auto",
       "margin-right": "auto",
       "margin-top": "10px",
-      // "z-index": "-1",
+      //"z-index": "-1",
       position: "absolute",
     };
+    // const suggestionStyle ={
+    //    "z-index": "-1",
+
+    // }
     return (
       <div id="googleMap">
         <PlacesAutocomplete
@@ -129,16 +132,29 @@ export class MapContainer extends Component {
                   className: "location-search-input",
                 })}
               />
-              <div className="autocomplete-dropdown-container">
+              <div
+                className="autocomplete-dropdown-container"
+                // style={suggestionStyle}
+              >
                 {loading && <div>Loading...</div>}
                 {suggestions.map((suggestion) => {
                   const className = suggestion.active
-                    ? "suggestion-item--active"
+                    ? "suggestion-item-active"
                     : "suggestion-item";
                   // inline style for demonstration purpose
                   const style = suggestion.active
-                    ? { backgroundColor: "#fafafa", cursor: "pointer" }
-                    : { backgroundColor: "#ffffff", cursor: "pointer" };
+                    ? {
+                        backgroundColor: "aqua",
+                        cursor: "pointer",
+                        marginLeft: "30px",
+                        width: "260px",
+                      }
+                    : {
+                        backgroundColor: "#ffffff",
+                        cursor: "pointer",
+                        marginLeft: "30px",
+                        width: "260px",
+                      };
                   return (
                     <div
                       {...getSuggestionItemProps(suggestion, {
@@ -174,7 +190,10 @@ export class MapContainer extends Component {
               lat: this.state.mapCenter.lat,
               lng: this.state.mapCenter.lng,
             }}
-            onClick={this.onMarkerClick}
+            // icon={{
+            //   url: "/TruckNTastyPin.svg",
+            //   scaledSize: new window.google.maps.Size(100, 100),
+            // }}
           />
           {this.state.foodTrucks.map((foodTruck) => {
             console.log(foodTruck);
@@ -184,18 +203,27 @@ export class MapContainer extends Component {
                   lat: foodTruck.lat,
                   lng: foodTruck.lng,
                 }}
+                icon={{
+                  url: "/TruckNTastyPin.svg",
+                  scaledSize: new window.google.maps.Size(100, 100),
+                }}
+                onClick={this.onMarkerClick}
               />
             );
           })}
-          <InfoWindow
+          {/* <InfoWindow
             marker={this.state.activeMarker}
             visible={this.state.showingInfoWindow}
             onClose={this.onClose}
           >
-            <div>
-              <h4>{this.state.selectedPlace.name}</h4>
-            </div>
-          </InfoWindow>
+            {this.state.foodTrucks.length &&
+              this.state.foodTrucks.map((f) => (
+                <div>
+                  <p>{f.name}</p>
+                  <p>{f.status}</p>
+                </div>
+              ))}
+          </InfoWindow> */}
         </Map>
       </div>
     );
