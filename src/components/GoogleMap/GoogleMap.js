@@ -211,7 +211,7 @@ export class MapContainer extends Component {
               />
             );
           })}
-          <InfoWindow
+          {/* <InfoWindow
             marker={this.state.activeMarker}
             visible={this.state.showingInfoWindow}
             onClose={this.onClose}
@@ -223,7 +223,7 @@ export class MapContainer extends Component {
                   <p>{f.status}</p>
                 </div>
               ))}
-          </InfoWindow>
+          </InfoWindow> */}
         </Map>
       </div>
     );
