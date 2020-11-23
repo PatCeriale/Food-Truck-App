@@ -97,7 +97,6 @@ export default function Truck() {
       />
       {/* <h1>{truckData.data}</h1> */}
       <Review />
-      <Review />
     </div>
   );
 }

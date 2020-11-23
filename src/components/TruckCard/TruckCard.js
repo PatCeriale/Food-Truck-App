@@ -12,10 +12,19 @@ import { useState, useEffect } from "react";
 import { submitReview, getTruck, getPlacesTrucks } from "../../utils/Api";
 
 export default function TruckCard({ vendorId }) {
+  console.log(vendorId);
   const [isLoading, setLoading] = useState(true);
   const [rating, setRating] = useState(0);
   const [reviewText, setReviewText] = useState("");
-  const [truckData, setTruckData] = useState([]);
+  const [truckData, setTruckData] = useState({
+    result: {
+      name: "",
+      formatted_address: "",
+      website: "No website available",
+      rating: "",
+      opening_hours: { is_open: false },
+    },
+  });
 
   useEffect(() => {
     if (!vendorId) return;
@@ -132,29 +141,29 @@ export default function TruckCard({ vendorId }) {
             </Button> */}
           </Grid>
           <Grid item xs={12} spacing={3}>
-            {/* <strong>Location:</strong> {truckData.data.result.formatted_address}{" "} */}
+            <strong>Location:</strong> {truckData.result.formatted_address}{" "}
             <br />
             <br />
             <strong>Website:</strong>{" "}
-            {/* <a href={truckData.data.result.website} target="_blank">
-              {truckData.data.result.website}
-            </a>{" "} */}
+            <a href={truckData.result.website} target="_blank">
+              {truckData.result.website}
+            </a>{" "}
             <br />
           </Grid>
           <Grid item xs={6} spacing={3}>
             <span className="left">
               {" "}
               <strong>Status:</strong>{" "}
-              {/* {truckData.data.result.opening_hours.isOpen === true
+              {truckData.result.opening_hours?.isOpen === true
                 ? "Currently open"
-                : "Currently closed"}{" "} */}
+                : "Currently closed"}{" "}
               <br />
             </span>
           </Grid>
           <Grid item xs={6} spacing={3}>
             <span className="right">
               <strong>Global Rating:</strong>{" "}
-              {/* <span className="rating">{truckData.data.result.rating}</span>/5 */}
+              <span className="rating">{truckData.result.rating}</span>/5
             </span>
           </Grid>{" "}
           <Grid item xs={8} s={6} spacing={1}>
