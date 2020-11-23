@@ -108,10 +108,10 @@ export class MapContainer extends Component {
       //"z-index": "-1",
       position: "absolute",
     };
-    const suggestionStyle ={
-       "z-index": "-1",
-      
-    }
+    // const suggestionStyle ={
+    //    "z-index": "-1",
+
+    // }
     return (
       <div id="googleMap">
         <PlacesAutocomplete
@@ -132,17 +132,29 @@ export class MapContainer extends Component {
                   className: "location-search-input",
                 })}
               />
-                <div className="autocomplete-dropdown-container"  style= {suggestionStyle}>
-             
-             {loading && <div>Loading...</div>}
-             {suggestions.map((suggestion) => {
-                const className = suggestion.active
-                  ? "suggestion-item-active"
-                  : "suggestion-item";
-               // inline style for demonstration purpose
-                const style = suggestion.active
-                  ? { backgroundColor: "aqua", cursor: "pointer", marginLeft:"30px", width: "260px"}
-                  : { backgroundColor: "#ffffff", cursor: "pointer", marginLeft:"30px", width: "260px"};
+              <div
+                className="autocomplete-dropdown-container"
+                // style={suggestionStyle}
+              >
+                {loading && <div>Loading...</div>}
+                {suggestions.map((suggestion) => {
+                  const className = suggestion.active
+                    ? "suggestion-item-active"
+                    : "suggestion-item";
+                  // inline style for demonstration purpose
+                  const style = suggestion.active
+                    ? {
+                        backgroundColor: "aqua",
+                        cursor: "pointer",
+                        marginLeft: "30px",
+                        width: "260px",
+                      }
+                    : {
+                        backgroundColor: "#ffffff",
+                        cursor: "pointer",
+                        marginLeft: "30px",
+                        width: "260px",
+                      };
                   return (
                     <div
                       {...getSuggestionItemProps(suggestion, {
