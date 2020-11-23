@@ -18,17 +18,17 @@ const useStyles = makeStyles({
   navbarDisplayFlex: {
     display: `flex`,
     justifyContent: `space-between`,
-    background: `oldlace`
+    
   },
   navDisplayFlex: {
     display: `flex`,
     justifyContent: `space-between`,
-    background: `oldlace`
+
   },
   linkText: {
     textDecoration: `none`,
     textTransform: `uppercase`,
-    color: `black`,
+    color: `white`,
 
   },
 });

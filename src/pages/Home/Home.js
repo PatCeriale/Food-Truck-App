@@ -31,12 +31,12 @@ export default function Home() {
   }, []);
 
   return (
-    <>
+    
     <div>
       <GoogleMap setFoodTrucks={setFoodTrucks} />
       </div>
-        <Grid container spacing={6} className="grid">
-        {foodTrucks ? ( 
+        {/* <Grid container spacing={6} className="grid"> */}
+        {/* {foodTrucks ? ( 
           <Grid item xs={12} sm={4}>
            
             <Card>
@@ -50,7 +50,7 @@ export default function Home() {
                  {/* <p>{f.place}</p> 
                  <p>{f.lat}</p>   */}
                  
-                </div>
+                {/* </div>
             ))}
             </CardContent>
             </Card>
@@ -58,7 +58,7 @@ export default function Home() {
             ): <div></div>}
               
         </Grid> 
-      </>
+      </> */} 
   
   );
 }
