@@ -154,6 +154,7 @@ export class MapContainer extends Component {
             </div>
           )}
         </PlacesAutocomplete>
+        <input type="text" />
 
         <Map
           style={mapStyle}
@@ -174,7 +175,6 @@ export class MapContainer extends Component {
               lat: this.state.mapCenter.lat,
               lng: this.state.mapCenter.lng,
             }}
-            onClick={this.onMarkerClick}
           />
           {this.state.foodTrucks.map((foodTruck) => {
             console.log(foodTruck);
@@ -184,6 +184,7 @@ export class MapContainer extends Component {
                   lat: foodTruck.lat,
                   lng: foodTruck.lng,
                 }}
+                onClick={this.onMarkerClick}
               />
             );
           })}
@@ -192,9 +193,17 @@ export class MapContainer extends Component {
             visible={this.state.showingInfoWindow}
             onClose={this.onClose}
           >
-            <div>
-              <h4>{this.state.selectedPlace.name}</h4>
-            </div>
+            {this.state.foodTrucks.length &&
+              this.state.foodTrucks.map((f) => (
+                <div>
+                  <p>{f.name}</p>
+                  <img src={f.icon2}></img>
+                  <p>{f.status}</p>
+                  <p>{f.place}</p>
+                  <p>{f.lat}</p>
+                  <p></p>
+                </div>
+              ))}
           </InfoWindow>
         </Map>
       </div>
