@@ -28,19 +28,19 @@ export const getGeolocation = function (location) {
   );
 };
 
-const API = {
-  createNewUSer: function (userData) {
-    return axios.post(
-      "https://truckntastyfood-backend.herokuapp.com/newuser",
-      userData
-    );
-  },
-};
+// const API = {
+//   createNewUSer: function (userData) {
+//     return axios.post(
+//       "https://truckntastyfood-backend.herokuapp.com/newuser",
+//       userData
+//     );
+//   },
+// };
 
 // Uncomment for deployed
-const baseURL =
-  "https://truckntastyfood-backend.herokuapp.com/" ||
-  process.env.REACT_APP_API_URL;
+const baseURL = "https://truckntastyfood-backend.herokuapp.com/";
+// ||
+// process.env.REACT_APP_API_URL;
 
 // Uncomment for local
 // const baseURL = "http://localhost:5000/";
@@ -71,6 +71,7 @@ export const currentUserData = function (token) {
 export const createSignIn = function (userData) {
   return axios.post(`${baseURL}signin`, userData);
 };
+
 // export const createSignIn = function (userData) {
 //   return axios.post("http://localhost:3000/signin", userData);
 // };
