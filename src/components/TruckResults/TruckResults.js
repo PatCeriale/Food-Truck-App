@@ -17,13 +17,14 @@ export default function TruckResults({
         <hr />
         <br />
         {/* <img src="#" /> */}
-        Location: {address}
+        <strong>Location:</strong> {address}
         <br />
-        Website: <a href="{website}" target="_blank" /> {website} <br />
-        Status: {isOpen === true ? "Currently open" : "Currently closed"} <br />
-        Rating: <strong>{rating}</strong> / 5
+        <strong>Status:</strong>{" "}
+        {isOpen === true ? "Currently open" : "Currently closed"} <br />
+        <strong>Rating:</strong> <strong className="rating">{rating}</strong> /
+        5
         <br />
-        <Link to={"/truck?id=" + googleId}>more info...</Link>
+        <Link to={"/truck?id=" + googleId}>{name}'s solo page</Link>
       </div>
     </Grid>
     // </Container>

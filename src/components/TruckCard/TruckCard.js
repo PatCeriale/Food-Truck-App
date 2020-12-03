@@ -109,9 +109,25 @@ export default function TruckCard({ vendorId }) {
     e.preventDefault();
     if (!rating) return;
     // TODO: remove console.log
-    // console.log(rating, reviewText);
     submitReview({ rating, reviewText, vendorId });
+    console.log(rating, reviewText);
   };
+
+  // const handleFavorite = async () => {
+  //   if (saved) {
+  //     await API.deleteBook(id);
+  //     onDelete(id);
+  //   } else {
+  //     const res = await submitReview({
+  //       vendorId,
+  //       reviewText,
+  //       rating,
+  //       reviewCreated,
+  //     });
+  //     console.log(res);
+  //     onSave(id, res.data._id);
+  //   }
+  // };
 
   if (isLoading || !truckData) {
     return (
@@ -136,9 +152,14 @@ export default function TruckCard({ vendorId }) {
             <hr />
           </Grid>
           <Grid item xs={3} spacing={3}>
-            {/* <Button variant="contained" color="primary">
+            <Button
+              variant="contained"
+              color="primary"
+              // onClick={handleBookSave}
+            >
+              {/* {favorited ? "Remove from Favorites" : "Add to Favorites"} */}
               Favorite
-            </Button> */}
+            </Button>
           </Grid>
           <Grid item xs={12} spacing={3}>
             <strong>Location:</strong> {truckData.result.formatted_address}{" "}
