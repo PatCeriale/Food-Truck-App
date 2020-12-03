@@ -28,26 +28,26 @@ export const getGeolocation = function (location) {
   );
 };
 
-const API = {
-  createNewUSer: function (userData) {
-    return axios.post(
-      "https://truckntastyfood-backend.herokuapp.com/newuser",
-      userData
-    );
-  },
-};
+// const API = {
+//   createNewUSer: function (userData) {
+//     return axios.post(
+//       "https://truckntastyfood-backend.herokuapp.com/newuser",
+//       userData
+//     );
+//   },
+// };
 
 // Uncomment for deployed
-const baseURL =
-  "https://truckntastyfood-backend.herokuapp.com/" ||
-  process.env.REACT_APP_API_URL;
+// const baseURL =
+//   "https://truckntastyfood-backend.herokuapp.com/" ||
+//   process.env.REACT_APP_API_URL;
 
 // Uncomment for local
 // const baseURL = "http://localhost:5000/";
-// const baseURL =
-// process.env.REACT_APP_API_URL ||
+const baseURL =
+  "https://truckntastyfood-backend.herokuapp.com/" ||
+  process.env.REACT_APP_API_URL;
 // "http://localhost:5000" ||
-// "https://truckntastyfood-backend.herokuapp.com/";
 
 export const createNewUser = function (userData) {
   return axios.post(`${baseURL}signup`, userData);
@@ -65,12 +65,17 @@ export const submitReview = function (reviewData) {
   return axios.post(`${baseURL}newreview`, reviewData);
 };
 
+export const getReview = function (reviewData) {
+  return axios.post(`${baseURL}review`, reviewData);
+};
+
 export const currentUserData = function (token) {
   return axios.post(`${baseURL}userdata`, token);
 };
 export const createSignIn = function (userData) {
   return axios.post(`${baseURL}signin`, userData);
 };
+
 // export const createSignIn = function (userData) {
 //   return axios.post("http://localhost:3000/signin", userData);
 // };
