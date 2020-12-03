@@ -105,13 +105,12 @@ export class MapContainer extends Component {
       "margin-left": "auto",
       "margin-right": "auto",
       "margin-top": "10px",
-      //"z-index": "-1",
+      // "z-index": "-1",
       position: "absolute",
     };
-    // const suggestionStyle ={
-    //    "z-index": "-1",
-
-    // }
+    const suggestionStyle = {
+      "z-index": "-1",
+    };
     return (
       <div id="googleMap">
         <PlacesAutocomplete
@@ -134,7 +133,7 @@ export class MapContainer extends Component {
               />
               <div
                 className="autocomplete-dropdown-container"
-                // style={suggestionStyle}
+                style={suggestionStyle}
               >
                 {loading && <div>Loading...</div>}
                 {suggestions.map((suggestion) => {
@@ -191,7 +190,8 @@ export class MapContainer extends Component {
               lng: this.state.mapCenter.lng,
             }}
             // icon={{
-            //   url: "/TruckNTastyPin.svg",
+            //   url:
+            //     "/https://64.media.tumblr.com/b31c16c0bc8133a7c827b5b59ed2bdb4/a3c51f472ba90473-c2/s1280x1920/268e49769546d8d255edc8701169694598362f03.png",
             //   scaledSize: new window.google.maps.Size(100, 100),
             // }}
           />
@@ -203,10 +203,11 @@ export class MapContainer extends Component {
                   lat: foodTruck.lat,
                   lng: foodTruck.lng,
                 }}
-                icon={{
-                  url: "/TruckNTastyPin.svg",
-                  scaledSize: new window.google.maps.Size(100, 100),
-                }}
+                // icon={{
+                //   url:
+                //     "/https://64.media.tumblr.com/b31c16c0bc8133a7c827b5b59ed2bdb4/a3c51f472ba90473-c2/s1280x1920/268e49769546d8d255edc8701169694598362f03.png",
+                //   scaledSize: new window.google.maps.Size(100, 100),
+                // }}
                 onClick={this.onMarkerClick}
               />
             );
