@@ -38,16 +38,16 @@ export const getGeolocation = function (location) {
 // };
 
 // Uncomment for deployed
-const baseURL = "https://truckntastyfood-backend.herokuapp.com/";
-// ||
-// process.env.REACT_APP_API_URL;
+// const baseURL =
+//   "https://truckntastyfood-backend.herokuapp.com/" ||
+//   process.env.REACT_APP_API_URL;
 
 // Uncomment for local
 // const baseURL = "http://localhost:5000/";
-// const baseURL =
-// process.env.REACT_APP_API_URL ||
+const baseURL =
+  "https://truckntastyfood-backend.herokuapp.com/" ||
+  process.env.REACT_APP_API_URL;
 // "http://localhost:5000" ||
-// "https://truckntastyfood-backend.herokuapp.com/";
 
 export const createNewUser = function (userData) {
   return axios.post(`${baseURL}signup`, userData);
@@ -63,6 +63,10 @@ export const myUserAccount = function (userData) {
 
 export const submitReview = function (reviewData) {
   return axios.post(`${baseURL}newreview`, reviewData);
+};
+
+export const getReview = function (reviewData) {
+  return axios.post(`${baseURL}review`, reviewData);
 };
 
 export const currentUserData = function (token) {

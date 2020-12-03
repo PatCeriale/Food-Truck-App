@@ -109,8 +109,8 @@ export default function TruckCard({ vendorId }) {
     e.preventDefault();
     if (!rating) return;
     // TODO: remove console.log
-    // console.log(rating, reviewText);
     submitReview({ rating, reviewText, vendorId });
+    console.log(rating, reviewText);
   };
 
   // const handleFavorite = async () => {
