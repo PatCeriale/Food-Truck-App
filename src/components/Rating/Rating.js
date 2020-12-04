@@ -1,24 +1,15 @@
 import { Container, Grid } from "@material-ui/core";
-import "./Review.css";
-import { submitReview, getTruck, getPlacesTrucks } from "../../utils/Api";
+import "./Rating.css";
+import {
+  submitReview,
+  getTruck,
+  getPlacesTrucks,
+  getReviews,
+} from "../../utils/Api";
 import { useState, useEffect } from "react";
 
 export default function Review({ vendorId }) {
-  const [reviewData, setReviewData] = useState(
-    []
-    // {
-    // result: {
-    //   reviews: [
-    //     {
-    //       author_name: "",
-    //       rating: "",
-    //       text: "",
-    //       relative_time_description: "",
-    //     },
-    //   ],
-    // },
-    // }
-  );
+  const [ratingData, setRatingData] = useState([]);
 
   // useEffect(() => {
   //   if (!vendorId) return;
@@ -39,53 +30,39 @@ export default function Review({ vendorId }) {
   useEffect(() => {
     if (!vendorId) return;
     // console.log(vendorId);
-    getPlacesTrucks(vendorId).then((res) =>
-      setReviewData(res.data.result.reviews)
-    );
+    getReviews(vendorId).then((res) => setRatingData(res));
     // setLoading(false);
+    // console.log(ratingData, "+++++++++++++++++++++++++");
   }, [vendorId]);
   /////////////////////////////////////////////////////////
 
   useEffect(() => {
-    // console.log(reviewData, "----------------------");
-  }, [reviewData]);
-
-  // ////////////////////////////////////////////////////////
-  // useEffect(() => {
-  //   if (!vendorId) return;
-  //   // console.log(vendorId);
-  //   getPlacesTrucks(vendorId).then((res) => setRatingData(res.data));
-  //   // setLoading(false);
-  // }, [vendorId]);
-  // /////////////////////////////////////////////////////////
-
-  // useEffect(() => {
-  //   console.log(ratingData, "+++++++++++++++++++++++++");
-  // }, [ratingData]);
+    console.log(ratingData, "+++++++++++++ Ratings!!!! ++++++++++++");
+  }, [ratingData]);
 
   return (
     //
     <div>
-      {reviewData
+      {ratingData
         .slice(0)
         .reverse()
-        .map((reviews) => (
+        .map((ratings) => (
           <Container className="Container" maxWidth="sm">
             <Grid container spacing={4}>
               <Grid item xs={6} spacing={6}>
-                <h3>{reviews?.author_name}</h3>
+                {/* <h3>{ratings?.author_name}</h3> */}
                 <br />
-                {reviews?.relative_time_description}
+                {ratings?.reviewCreated}
               </Grid>
               <Grid item xs={6} spacing={6} className="rating-stars">
-                User Rating: {reviews?.rating}{" "}
+                User Rating: {ratings?.rating}{" "}
                 {/* for loop with length of stars given? */}
                 <i class="far fa-star"></i>
               </Grid>{" "}
               <Grid item xs={12} spacing={12}>
                 <hr />
                 <br />
-                <p>{reviews?.text}</p>
+                <p>{ratings?.reviewText}</p>
               </Grid>
             </Grid>
           </Container>

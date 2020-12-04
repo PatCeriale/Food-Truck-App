@@ -65,8 +65,8 @@ export const submitReview = function (reviewData) {
   return axios.post(`${baseURL}newreview`, reviewData);
 };
 
-export const getReview = function (reviewData) {
-  return axios.post(`${baseURL}review`, reviewData);
+export const getReviews = function (ratingData) {
+  return axios.put(`${baseURL}/review/:id`, ratingData);
 };
 
 export const currentUserData = function (token) {
