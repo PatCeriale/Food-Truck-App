@@ -8,6 +8,8 @@ import {
 } from "../../utils/Api";
 import { useState, useEffect } from "react";
 
+const moment = require("moment");
+
 export default function Rating({ vendorId }) {
   const [ratingData, setRatingData] = useState([]);
 
@@ -25,7 +27,7 @@ export default function Rating({ vendorId }) {
 
   useEffect(() => {
     console.log(ratingData, "+++++++++++++ Ratings!!!! ++++++++++++", vendorId);
-  }, [ratingData]);
+  });
 
   return (
     <div>
@@ -38,7 +40,7 @@ export default function Rating({ vendorId }) {
               <Grid item xs={6} spacing={6}>
                 {/* <h3>{reviews?.author_name}</h3> */}
                 <br />
-                {reviews?.reviewCreated}
+                {moment(reviews?.reviewCreated).format("MMM, DD YYYY")}
               </Grid>
               <Grid item xs={6} spacing={6} className="rating-stars">
                 User Rating: {reviews?.rating}{" "}
