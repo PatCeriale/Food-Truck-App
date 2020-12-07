@@ -1,23 +1,19 @@
 import React, { Component } from "react";
 import { Map, Marker, GoogleApiWrapper, InfoWindow } from "google-maps-react";
-
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from "react-places-autocomplete";
 import { getGeolocation, getTrucks } from "../../utils/Api";
-
 //note: code formatted for ES6 here
 export class MapContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       address: "",
-
       showingInfoWindow: false,
       activeMarker: {},
       selectedPlace: {},
-
       mapCenter: {
         lat: 47.606,
         lng: -122.33,
@@ -25,18 +21,17 @@ export class MapContainer extends Component {
       foodTrucks: [],
     };
   }
-
   handleChange = (address) => {
     this.setState({ address });
   };
-
-  onMarkerClick = (props, marker, e) =>
+  onMarkerClick = (props, marker, e) => {
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
       showingInfoWindow: true,
     });
-
+    console.log(this.state.selectedPlace);
+  };
   onClose = (props) => {
     if (this.state.showingInfoWindow) {
       this.setState({
@@ -45,7 +40,6 @@ export class MapContainer extends Component {
       });
     }
   };
-
   onMapClicked = (props) => {
     if (this.state.showingInfoWindow) {
       this.setState({
@@ -68,7 +62,6 @@ export class MapContainer extends Component {
             data.data.results[0].geometry.location.lat +
             "," +
             data.data.results[0].geometry.location.lng;
-
           console.log("======================================");
           console.log(address);
           console.log(location);
@@ -85,19 +78,22 @@ export class MapContainer extends Component {
               lat: r.geometry.location.lat,
               lng: r.geometry.location.lng,
             }));
-
             this.setState({ foodTrucks: results });
             this.props.setFoodTrucks(results);
           });
         });
-
         console.log({ address });
-
         // axios request for pins
       })
       .catch((error) => console.error("Error", error));
   };
-
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   if (this.state.mapCenter.lat === nextState.mapCenter.lat) {
+  //     return false;
+  //   } else {
+  //     return true;
+  //   }
+  // }
   render() {
     const mapStyle = {
       width: "95%",
@@ -105,12 +101,12 @@ export class MapContainer extends Component {
       "margin-left": "auto",
       "margin-right": "auto",
       "margin-top": "10px",
-      // "z-index": "-1",
+      //"z-index": "-1",
       position: "absolute",
     };
-    const suggestionStyle = {
-      "z-index": "-1",
-    };
+    // const suggestionStyle ={
+    //    "z-index": "-1",
+    // }
     return (
       <div id="googleMap">
         <PlacesAutocomplete
@@ -133,7 +129,7 @@ export class MapContainer extends Component {
               />
               <div
                 className="autocomplete-dropdown-container"
-                style={suggestionStyle}
+                // style={suggestionStyle}
               >
                 {loading && <div>Loading...</div>}
                 {suggestions.map((suggestion) => {
@@ -149,7 +145,7 @@ export class MapContainer extends Component {
                         width: "260px",
                       }
                     : {
-                        backgroundColor: "#ffffff",
+                        backgroundColor: "#FFFFFF",
                         cursor: "pointer",
                         marginLeft: "30px",
                         width: "260px",
@@ -169,7 +165,6 @@ export class MapContainer extends Component {
             </div>
           )}
         </PlacesAutocomplete>
-
         <Map
           style={mapStyle}
           google={this.props.google}
@@ -190,8 +185,7 @@ export class MapContainer extends Component {
               lng: this.state.mapCenter.lng,
             }}
             // icon={{
-            //   url:
-            //     "/https://64.media.tumblr.com/b31c16c0bc8133a7c827b5b59ed2bdb4/a3c51f472ba90473-c2/s1280x1920/268e49769546d8d255edc8701169694598362f03.png",
+            //   url: "/TruckNTastyPin.svg",
             //   scaledSize: new window.google.maps.Size(100, 100),
             // }}
           />
@@ -204,33 +198,30 @@ export class MapContainer extends Component {
                   lng: foodTruck.lng,
                 }}
                 // icon={{
-                //   url:
-                //     "/https://64.media.tumblr.com/b31c16c0bc8133a7c827b5b59ed2bdb4/a3c51f472ba90473-c2/s1280x1920/268e49769546d8d255edc8701169694598362f03.png",
+                //   url: "/TruckNTastyPin.svg",
                 //   scaledSize: new window.google.maps.Size(100, 100),
                 // }}
                 onClick={this.onMarkerClick}
+                truckName={foodTruck.name}
+                truckStatus={foodTruck.status}
               />
             );
           })}
-          {/* <InfoWindow
+          <InfoWindow
             marker={this.state.activeMarker}
             visible={this.state.showingInfoWindow}
             onClose={this.onClose}
           >
-            {this.state.foodTrucks.length &&
-              this.state.foodTrucks.map((f) => (
-                <div>
-                  <p>{f.name}</p>
-                  <p>{f.status}</p>
-                </div>
-              ))}
-          </InfoWindow> */}
+            <div>
+              <p>{this.state.selectedPlace.truckName}</p>
+              <p>{this.state.selectedPlace.truckStatus}</p>
+            </div>
+          </InfoWindow>
         </Map>
       </div>
     );
   }
 }
-
 export default GoogleApiWrapper({
   apiKey: "AIzaSyCuN1lJcst4n7Y8RM3vGqbrHk-FLLJj6xc",
 })(MapContainer);
