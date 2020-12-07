@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import TruckCard from "../../components/TruckCard/TruckCard";
 import Review from "../../components/Review/Review";
+import Rating from "../../components/Rating/Rating";
 // import Truck from "../../components/TruckCard/TruckCard";
 import "./Truck.css";
 import { getPlacesTrucks, getTruck } from "../../utils/Api";
@@ -95,7 +96,8 @@ export default function Truck() {
         vendorId={new URLSearchParams(location.search).get("id")}
         // userId="abcd"
       />
-      <Review vendorId={new URLSearchParams(location.search).get("id")} />
+      <Rating vendorId={new URLSearchParams(location.search).get("id")} />
+      {/* <Review vendorId={new URLSearchParams(location.search).get("id")} /> */}
     </div>
   );
 }
