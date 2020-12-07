@@ -27,27 +27,14 @@ export const getGeolocation = function (location) {
     `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=AIzaSyDuPsN0ojCj-Ii8azSMi47no7xGpJZ7d20`
   );
 };
-
-// const API = {
-//   createNewUSer: function (userData) {
-//     return axios.post(
-//       "https://truckntastyfood-backend.herokuapp.com/newuser",
-//       userData
-//     );
-//   },
-// };
-
-// Uncomment for deployed
-// const baseURL =
-//   "https://truckntastyfood-backend.herokuapp.com/" ||
-//   process.env.REACT_APP_API_URL;
+//   "proxy": "https://truckntastyfood-backend.herokuapp.com/",
 
 // Uncomment for local
 // const baseURL = "http://localhost:5000/";
 const baseURL =
   "https://truckntastyfood-backend.herokuapp.com/" ||
-  process.env.REACT_APP_API_URL;
-// "http://localhost:5000" ||
+  process.env.REACT_APP_API_URL ||
+  "http://localhost:5000";
 
 export const createNewUser = function (userData) {
   return axios.post(`${baseURL}signup`, userData);
@@ -65,8 +52,12 @@ export const submitReview = function (reviewData) {
   return axios.post(`${baseURL}newreview`, reviewData);
 };
 
-export const getReview = function (reviewData) {
-  return axios.post(`${baseURL}review`, reviewData);
+export const getReviews = function (userData) {
+  return axios.get(`${baseURL}review?id=${userData}`);
+};
+
+export const putReviews = function (userData) {
+  return axios.get(`${baseURL}review`, userData);
 };
 
 export const currentUserData = function (token) {
