@@ -107,9 +107,14 @@ export default function SignUp() {
     createNewUser(mystate)
       .then((res) => {
         console.log(res);
+        localStorage.setItem("token", res.data.token);
         history.push("/user");
       })
-      .catch((error) => console.log("user registration failed:", error));
+      // add an alert to let user know their signup didn't work
+      .catch((error) => {
+        alert("user registration failed, try again", error);
+        // console.log("user registration failed:", error);
+      });
   };
 
   //handleFormSubmit
@@ -128,7 +133,6 @@ export default function SignUp() {
         </Typography>
         <form className={classes.form} noValidate onSubmit={handleFormSubmit}>
           <TextField
-            onChange={handleInputChange}
             onChange={handleInputChange}
             variant="outlined"
             margin="normal"
@@ -155,7 +159,6 @@ export default function SignUp() {
           />
           <TextField
             onChange={handleInputChange}
-            onChange={handleInputChange}
             variant="outlined"
             margin="normal"
             required
@@ -167,7 +170,6 @@ export default function SignUp() {
             autoComplete="current-password"
           />
           <TextField
-            onChange={handleInputChange}
             onChange={handleInputChange}
             variant="outlined"
             margin="normal"

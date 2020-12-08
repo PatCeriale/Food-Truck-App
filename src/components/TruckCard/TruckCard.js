@@ -1,4 +1,3 @@
-import { makeStyles } from "@material-ui/core/styles";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import {
   Container,
@@ -9,51 +8,192 @@ import {
   TextareaAutosize,
 } from "@material-ui/core";
 import "./TruckCard.css";
-import { useState } from "react";
-import { submitReview } from "../../utils/Api";
+import { useState, useEffect } from "react";
+import {
+  submitReview,
+  getTruck,
+  getPlacesTrucks,
+  getReviews,
+} from "../../utils/Api";
 
 export default function TruckCard({ vendorId }) {
+  console.log(vendorId);
+  const [isLoading, setLoading] = useState(true);
   const [rating, setRating] = useState(0);
   const [reviewText, setReviewText] = useState("");
+  const [truckData, setTruckData] = useState({
+    result: {
+      name: "",
+      formatted_address: "",
+      website: "No website available",
+      rating: "",
+      opening_hours: { is_open: false },
+    },
+  });
+
+  useEffect(() => {
+    if (!vendorId) return;
+    // console.log(vendorId);
+    getPlacesTrucks(vendorId).then(
+      (res) => setTruckData(res.data)
+      // .map(
+      //   ({ name, formatted_address, website, rating }) => ({
+      //     name,
+      //     formatted_address,
+      //     website,
+      //     rating,
+      //   })
+      // )
+    );
+    // console.log(truckData.result);
+    setLoading(false);
+  }, [vendorId]);
+  // const data = truckData.data.result;
+
+  // useEffect(() => {
+  //   if (!vendorId) return;
+  //   const handle = setTimeout(async () => {
+  //     const res = await getPlacesTrucks(vendorId);
+  //     if (res.statusText !== "OK") {
+  //       console.error("failed to get search results");
+  //       return;
+  //     }
+  //     setTruckData(() =>
+  //       res.data.result
+  //         //only open food trucks
+  //         // .filter(({ business_status }) => business_status === "OPERATIONAL")
+  //         // .filter(({ name }) => name !== "Seattle Food Truck .com")
+  //         .map(
+  //           ({
+  //             name,
+  //             rating, // formatted_address: address,
+  //             vicinity: address,
+  //             place_id: googleId,
+  //             opening_hours,
+  //             website,
+  //           }) => ({
+  //             googleId,
+  //             name,
+  //             rating,
+  //             address,
+  //             website,
+  //             isOpen: !!opening_hours?.open_now,
+  //           })
+  //         )
+  //     );
+  //   }, 1);
+  //   return () => clearTimeout(handle);
+  // }, [truckData]);
+
+  useEffect(() => {
+    console.log(truckData);
+  }, [truckData]);
+
+  // useEffect(() => {
+  // console.log(vendorId);
+  // const res = getPlacesTrucks(vendorId);
+  // console.log(res);
+  // const res = async () => {};
+  // setTruckData(
+  //   async () =>
+  //     await getTruck(vendorId).then((res) => {
+  //       return res.data.results.map((data) => {
+  //       });
+  //     })
+  // );
+  //   await getTruck(vendorId).then((res) => {
+  //     console.log(res);
+  //     return res;
+  // });
+  // setTruckData(() => res);
+  // // },
+  // [truckData]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!rating) return;
     // TODO: remove console.log
+    const submitReviewz = async () => {
+      await submitReview({ rating, reviewText, vendorId });
+      await getReviews(vendorId);
+    };
+    submitReviewz();
     console.log(rating, reviewText);
-    submitReview({ rating, reviewText, vendorId });
   };
 
+  // const handleFavorite = async () => {
+  //   if (saved) {
+  //     await API.deleteBook(id);
+  //     onDelete(id);
+  //   } else {
+  //     const res = await submitReview({
+  //       vendorId,
+  //       reviewText,
+  //       rating,
+  //       reviewCreated,
+  //     });
+  //     console.log(res);
+  //     onSave(id, res.data._id);
+  //   }
+  // };
+
+  if (isLoading || !truckData) {
+    return (
+      <div>
+        <h3>Loading...</h3>
+      </div>
+    );
+  }
   return (
     <div className="TruckCard">
       <Container className="Container" maxWidth="sm">
         <Grid container spacing={4}>
           <Grid item xs={12} spacing={12}>
             <img
-              src="https://cbs6albany.com/resources/media/ef9010e4-ff57-4b7b-9ee9-7482bfad3a84-large16x9_foodtrucks.PNG?1587351056666"
+              src="https://64.media.tumblr.com/b343649189ed67f4b386539103f2b348/a34b696191849ea9-53/s540x810/4689ce9ad6173167269440f4314327be9f0f47db.png"
               alt="Food Truck"
               className="foodTruckImage"
             ></img>
           </Grid>
           <Grid item xs={9} spacing={3}>
-            <h2>Truck Name</h2>
+            <h2>{truckData.result.name} </h2>
             <hr />
           </Grid>
           <Grid item xs={3} spacing={3}>
-            <Button variant="contained" color="primary">
+            <Button
+              variant="contained"
+              color="primary"
+              // onClick={handleBookSave}
+            >
+              {/* {favorited ? "Remove from Favorites" : "Add to Favorites"} */}
               Favorite
             </Button>
           </Grid>
           <Grid item xs={12} spacing={3}>
-            Location: <br />
+            <strong>Location:</strong> {truckData.result.formatted_address}{" "}
             <br />
-            Name's Website: <br />
+            <br />
+            <strong>Website:</strong>{" "}
+            <a href={truckData.result.website} target="_blank">
+              {truckData.result.website}
+            </a>{" "}
+            <br />
           </Grid>
           <Grid item xs={6} spacing={3}>
-            <span className="left">Is open?</span>
+            <span className="left">
+              {" "}
+              <strong>Status:</strong>{" "}
+              {truckData.result.opening_hours?.isOpen === true
+                ? "Currently open"
+                : "Currently closed"}{" "}
+              <br />
+            </span>
           </Grid>
           <Grid item xs={6} spacing={3}>
-            <span className="right">Global Rating: rating/5</span>
+            <span className="right">
+              <strong>Global Rating:</strong>{" "}
+              <span className="rating">{truckData.result.rating}</span>/5
+            </span>
           </Grid>{" "}
           <Grid item xs={8} s={6} spacing={1}>
             <form onSubmit={handleSubmit}>

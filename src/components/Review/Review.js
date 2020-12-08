@@ -1,40 +1,95 @@
-import { Container, Grid, Paper } from "@material-ui/core";
+import { Container, Grid } from "@material-ui/core";
 import "./Review.css";
+import { submitReview, getTruck, getPlacesTrucks } from "../../utils/Api";
+import { useState, useEffect } from "react";
 
-export default function Review() {
+export default function Review({ vendorId }) {
+  const [reviewData, setReviewData] = useState(
+    []
+    // {
+    // result: {
+    //   reviews: [
+    //     {
+    //       author_name: "",
+    //       rating: "",
+    //       text: "",
+    //       relative_time_description: "",
+    //     },
+    //   ],
+    // },
+    // }
+  );
+
+  // useEffect(() => {
+  //   if (!vendorId) return;
+  //   const res = getPlacesTrucks(vendorId);
+  //   // .then((res) =>
+  //   setReviewData(res.data.result.reviews.map());
+  //   // ({ author_name, rating, text, relative_time_description }) => ({
+  //   //   author_name,
+  //   //   rating,
+  //   //   text,
+  //   //   relative_time_description,
+  //   // })
+  //   // );
+  //   // setLoading(false);
+  // }, [vendorId]);
+
+  ////////////////////////////////////////////////////////
+  useEffect(() => {
+    if (!vendorId) return;
+    // console.log(vendorId);
+    getPlacesTrucks(vendorId).then((res) =>
+      setReviewData(res.data.result.reviews)
+    );
+    // setLoading(false);
+  }, [vendorId]);
+  /////////////////////////////////////////////////////////
+
+  useEffect(() => {
+    // console.log(reviewData, "----------------------");
+  }, [reviewData]);
+
+  // ////////////////////////////////////////////////////////
+  // useEffect(() => {
+  //   if (!vendorId) return;
+  //   // console.log(vendorId);
+  //   getPlacesTrucks(vendorId).then((res) => setRatingData(res.data));
+  //   // setLoading(false);
+  // }, [vendorId]);
+  // /////////////////////////////////////////////////////////
+
+  // useEffect(() => {
+  //   console.log(ratingData, "+++++++++++++++++++++++++");
+  // }, [ratingData]);
+
   return (
-    <Container className="Container" maxWidth="sm">
-      <Grid container spacing={4}>
-        <Grid item xs={6} spacing={6}>
-          <h3>User's Name from userId?</h3>
-          <br />
-          reviewCreated
-        </Grid>
-        <Grid item xs={6} spacing={6} className="rating-stars">
-          User Rating:
-          {/* for loop with length of stars given? */}
-          <i class="far fa-star"></i>
-        </Grid>{" "}
-        <Grid item xs={12} spacing={12}>
-          <hr />
-          <br />
-          <p>
-            Review contents: I'm baby flannel green juice palo santo shabby chic
-            farm-to-table seitan, health goth blue bottle slow-carb coloring
-            book swag narwhal affogato try-hard. Occupy +1 DIY lomo helvetica
-            kinfolk. Gluten-free artisan mlkshk, green juice cray sriracha lyft
-            chicharrones activated charcoal af edison bulb tumeric waistcoat
-            lumbersexual. Mlkshk brunch lomo ennui edison bulb, readymade
-            literally skateboard mixtape scenester irony kogi live-edge
-            activated charcoal. Copper mug keytar iPhone gastropub meditation
-            farm-to-table hexagon letterpress tattooed cloud bread photo booth
-            retro organic celiac hot chicken. Put a bird on it austin enamel pin
-            pabst art party microdosing messenger bag. Af neutra biodiesel
-            knausgaard twee PBR&B church-key. Dummy text? More like dummy thicc
-            text, amirite?
-          </p>
-        </Grid>
-      </Grid>
-    </Container>
+    //
+    <div>
+      {reviewData
+        .slice(0)
+        .reverse()
+        .map((reviews) => (
+          <Container className="Container" maxWidth="sm">
+            <Grid container spacing={4}>
+              <Grid item xs={6} spacing={6}>
+                <h4>{reviews?.author_name}'s Google review</h4>
+                <br />
+                {reviews?.relative_time_description}
+              </Grid>
+              <Grid item xs={6} spacing={6} className="rating-stars">
+                User Rating: {reviews?.rating}{" "}
+                {/* for loop with length of stars given? */}
+                <i class="far fa-star"></i>
+              </Grid>{" "}
+              <Grid item xs={12} spacing={12}>
+                <hr />
+                <br />
+                <p>{reviews?.text}</p>
+              </Grid>
+            </Grid>
+          </Container>
+        ))}
+    </div>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -15,13 +16,14 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import "./SignIn.css";
 import { signInUser } from "../../utils/Api";
+
 import { createSignIn } from "../../utils/Api";
 import Logo from "./salmonfavicon.png";
 
 // function Copyright() {
 //   return (
 //     <Typography variant="body2" color="textSecondary" align="center">
-//       {"Copyright © "}
+//       {"Copyright  "}
 //       <Link color="inherit" href="https://material-ui.com/">
 //         Your Website
 //       </Link>{" "}
@@ -55,15 +57,13 @@ export default function SignIn() {
   const history = useHistory();
   // const [mystate, setMyState] = useState({
   //   username: "",
+
   const [mystate, setMyState] = useState({
     email: "",
     password: "",
   });
   const classes = useStyles();
-  const handleSubmitClick = (event) => {
-    event.preventDefault();
-    console.log(mystate);
-  };
+
   const handleInputChange = (event) => {
     event.preventDefault();
     const { name, value } = event.target;
@@ -80,16 +80,27 @@ export default function SignIn() {
 
     signInUser(mystate)
       .then((res) => {
-        console.log(res);
+        console.log("Login succeeded", res);
+        localStorage.setItem("token", res.data.token);
         history.push("/user");
       })
-      .catch((error) => console.log("user login failed:", error));
 
-    createSignIn(mystate)
-      .then((res) => {
-        console.log("user found,", res);
-      })
-      .catch((error) => console.log("email password does not exist", error));
+      .catch((error) => {
+        console.log("user login failed:", error);
+        alert("wrong username or password");
+      });
+
+    // .catch((error) => console.log("user login failed:", error));
+  };
+  const handleSubmitClick = (event) => {
+    event.preventDefault();
+    console.log(mystate);
+
+    // createSignIn(mystate)
+    //   .then((res) => {
+    //     console.log("user found,", res);
+    //   })
+    //   .catch((error) => console.log("email password does not exist", error));
   };
 
   return (
@@ -121,12 +132,6 @@ export default function SignIn() {
             onChange={handleInputChange}
             autoComplete="current-email"
           />
-          {/* type="username"
-            id="username"
-            autoComplete="current-username"
-            onChange={handleInputChange}
-            value={mystate.username}
-          /> */}
 
           <TextField
             variant="outlined"
@@ -141,8 +146,8 @@ export default function SignIn() {
             onChange={handleInputChange}
             autoComplete="current-password"
             // autoComplete="current-password"
-            onChange={handleInputChange}
-            value={mystate.password}
+            // onChange={handleInputChange}
+            // value={mystate.password}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -154,7 +159,7 @@ export default function SignIn() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={handleSubmitClick}
+            onClick={handleFormSubmit}
           >
             Sign In
           </Button>
