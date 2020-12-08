@@ -108,7 +108,7 @@ export default function SignUp() {
       .then((res) => {
         console.log(res);
         localStorage.setItem("token", res.data.token);
-        history.push("/user");
+        history.push("/signin");
       })
       // add an alert to let user know their signup didn't work
       .catch((error) => {
