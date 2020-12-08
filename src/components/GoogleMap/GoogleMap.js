@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Router, Link } from "react-router-dom";
 import { Map, Marker, GoogleApiWrapper, InfoWindow } from "google-maps-react";
 import PlacesAutocomplete, {
   geocodeByAddress,
@@ -204,6 +205,7 @@ export class MapContainer extends Component {
                 onClick={this.onMarkerClick}
                 truckName={foodTruck.name}
                 truckStatus={foodTruck.status}
+                truckPlaceId={foodTruck.place}
               />
             );
           })}
@@ -213,8 +215,17 @@ export class MapContainer extends Component {
             onClose={this.onClose}
           >
             <div>
-              <p>{this.state.selectedPlace.truckName}</p>
-              <p>{this.state.selectedPlace.truckStatus}</p>
+              <h3>{this.state.selectedPlace.truckName}</h3>
+              <p>Status: {this.state.selectedPlace.truckStatus}</p>
+              <p>
+                {/* <Router>
+                  <Link
+                    to={"/truck?id=" + this.state.selectedPlace.truckPlaceId}
+                  >
+                    Website
+                  </Link>
+                </Router> */}
+              </p>
             </div>
           </InfoWindow>
         </Map>
