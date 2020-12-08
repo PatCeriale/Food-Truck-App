@@ -73,7 +73,7 @@ export default function Review({ vendorId }) {
           <Container className="Container" maxWidth="sm">
             <Grid container spacing={4}>
               <Grid item xs={6} spacing={6}>
-                <h3>{reviews?.author_name}</h3>
+                <h4>{reviews?.author_name}'s Google review</h4>
                 <br />
                 {reviews?.relative_time_description}
               </Grid>

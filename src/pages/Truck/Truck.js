@@ -97,7 +97,7 @@ export default function Truck() {
         // userId="abcd"
       />
       <Rating vendorId={new URLSearchParams(location.search).get("id")} />
-      {/* <Review vendorId={new URLSearchParams(location.search).get("id")} /> */}
+      <Review vendorId={new URLSearchParams(location.search).get("id")} />
     </div>
   );
 }
