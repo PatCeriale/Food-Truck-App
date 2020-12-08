@@ -4,16 +4,15 @@
 
 ## **Description**
 
-        Truck N' Tasty allows the logged in user to input a city into Google Places API which will render the name, location, rating, hours of operation, and image of the Food Truck if it's available. The user can then save Trucks they like or submit a review. 
-
+Truck N' Tasty allows the logged in user to input a city into Google Places API which will render the name, location, rating, hours of operation, and image of the Food Truck if it's available. The user can then save Trucks they like or submit a review.
 
 ## **Collaborators**
 
-    -Josh "JB" Brown 
-    -Patrick Ceriale 
-    -Ismahan Jamea
-    -Stefan Johnson 
-    -Chris Sakwa
+-Patrick Ceriale<br/>
+-Josh "JB" Brown<br/>
+-Ismahan Jamea<br/>
+-Stefan Johnson<br/>
+-Chris Sakwa<br/>
 
 ## **Table of Contents**
 
@@ -25,14 +24,15 @@
 
 ## **Installation**
 
-     Run the line "npm install" in your terminal to install dependencies. MongoDB must be installed and running
+Run the line "npm install" in your terminal to install dependencies. MongoDB must be installed and running
 
 ## **Usage**
 
-    Use the map to view your favorite food trucks, create a user account to change your preferred location, add favorite food trucks to your profile as well as leave ratings and reviews for food trucks
+Use the map to view your favorite food trucks, create a user account to change your preferred location, add favorite food trucks to your profile as well as leave ratings and reviews for food trucks
 
 ## **License**
-    None
+
+None
 
 ## **Questions?**
 
@@ -51,6 +51,3 @@ Chris - https://github.com/ckomodo.<br/>
 Contact me via email at Patceriale@gmail.com.
 
 ## **Preview**
-
-
-
