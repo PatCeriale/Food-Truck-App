@@ -109,8 +109,6 @@ export default function SignIn() {
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
-          <img src="./salmonfavicon.png" />
-          {/* <Logo /> */}
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign in
