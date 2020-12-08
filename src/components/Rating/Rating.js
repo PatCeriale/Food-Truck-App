@@ -9,7 +9,6 @@ import {
 import { useState, useEffect } from "react";
 
 const moment = require("moment");
-
 export default function Rating({ vendorId }) {
   const [ratingData, setRatingData] = useState([]);
 
@@ -28,6 +27,7 @@ export default function Rating({ vendorId }) {
   useEffect(() => {
     console.log(ratingData, "+++++++++++++ Ratings!!!! ++++++++++++", vendorId);
   });
+  }, [ratingData]);
 
   return (
     <div>
@@ -41,6 +41,7 @@ export default function Rating({ vendorId }) {
                 {/* <h3>{reviews?.author_name}</h3> */}
                 <br />
                 {moment(reviews?.reviewCreated).format("MMM, DD YYYY")}
+                {reviews?.reviewCreated}
               </Grid>
               <Grid item xs={6} spacing={6} className="rating-stars">
                 User Rating: {reviews?.rating}{" "}
