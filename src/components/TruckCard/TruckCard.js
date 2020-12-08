@@ -9,7 +9,12 @@ import {
 } from "@material-ui/core";
 import "./TruckCard.css";
 import { useState, useEffect } from "react";
-import { submitReview, getTruck, getPlacesTrucks } from "../../utils/Api";
+import {
+  submitReview,
+  getTruck,
+  getPlacesTrucks,
+  getReviews,
+} from "../../utils/Api";
 
 export default function TruckCard({ vendorId }) {
   console.log(vendorId);
@@ -93,7 +98,6 @@ export default function TruckCard({ vendorId }) {
   //   async () =>
   //     await getTruck(vendorId).then((res) => {
   //       return res.data.results.map((data) => {
-  //         debugger;
   //       });
   //     })
   // );
@@ -109,7 +113,11 @@ export default function TruckCard({ vendorId }) {
     e.preventDefault();
     if (!rating) return;
     // TODO: remove console.log
-    submitReview({ rating, reviewText, vendorId });
+    const submitReviewz = async () => {
+      await submitReview({ rating, reviewText, vendorId });
+      await getReviews(vendorId);
+    };
+    submitReviewz();
     console.log(rating, reviewText);
   };
 

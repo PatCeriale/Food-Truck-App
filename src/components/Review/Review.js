@@ -47,33 +47,49 @@ export default function Review({ vendorId }) {
   /////////////////////////////////////////////////////////
 
   useEffect(() => {
-    console.log(reviewData, "----------------------");
+    // console.log(reviewData, "----------------------");
   }, [reviewData]);
+
+  // ////////////////////////////////////////////////////////
+  // useEffect(() => {
+  //   if (!vendorId) return;
+  //   // console.log(vendorId);
+  //   getPlacesTrucks(vendorId).then((res) => setRatingData(res.data));
+  //   // setLoading(false);
+  // }, [vendorId]);
+  // /////////////////////////////////////////////////////////
+
+  // useEffect(() => {
+  //   console.log(ratingData, "+++++++++++++++++++++++++");
+  // }, [ratingData]);
 
   return (
     //
     <div>
-      {reviewData.map((reviews) => (
-        <Container className="Container" maxWidth="sm">
-          <Grid container spacing={4}>
-            <Grid item xs={6} spacing={6}>
-              <h3>{reviews?.author_name}</h3>
-              <br />
-              {reviews?.relative_time_description}
+      {reviewData
+        .slice(0)
+        .reverse()
+        .map((reviews) => (
+          <Container className="Container" maxWidth="sm">
+            <Grid container spacing={4}>
+              <Grid item xs={6} spacing={6}>
+                <h4>{reviews?.author_name}'s Google review</h4>
+                <br />
+                {reviews?.relative_time_description}
+              </Grid>
+              <Grid item xs={6} spacing={6} className="rating-stars">
+                User Rating: {reviews?.rating}{" "}
+                {/* for loop with length of stars given? */}
+                <i class="far fa-star"></i>
+              </Grid>{" "}
+              <Grid item xs={12} spacing={12}>
+                <hr />
+                <br />
+                <p>{reviews?.text}</p>
+              </Grid>
             </Grid>
-            <Grid item xs={6} spacing={6} className="rating-stars">
-              User Rating: {reviews?.rating}{" "}
-              {/* for loop with length of stars given? */}
-              <i class="far fa-star"></i>
-            </Grid>{" "}
-            <Grid item xs={12} spacing={12}>
-              <hr />
-              <br />
-              <p>{reviews?.text}</p>
-            </Grid>
-          </Grid>
-        </Container>
-      ))}
+          </Container>
+        ))}
     </div>
   );
 }

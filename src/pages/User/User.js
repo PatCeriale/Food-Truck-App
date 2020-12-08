@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function User() {
   const classes = useStyles();
-
   const handleSubmit = (e) => {
     e.preventDefault();
     signInUser();
