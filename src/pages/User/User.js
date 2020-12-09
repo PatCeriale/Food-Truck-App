@@ -69,7 +69,7 @@ export default function User() {
   return (
     <div className={classes.root} onClick={handleSubmit}>
       <div>
-        <h1>User: {profileState.username}</h1>
+        <h1>Welcome {profileState.username}!</h1>
       </div>
       <Grid container spacing={6}>
         <Grid item xs={12}>
