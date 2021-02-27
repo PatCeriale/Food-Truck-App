@@ -1,4 +1,6 @@
 # **Truck N' Tasty**
+![Screenshot (35)](https://user-images.githubusercontent.com/70540019/109381132-451a3780-788d-11eb-92cd-539956441f25.png)
+
 
 ![License badge](https://img.shields.io/badge/license-None-success)
 
